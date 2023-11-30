@@ -129,12 +129,12 @@ public class HomePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBukuActionPerformed
-        routes.Navigator.showBukuPage();
+        jmvc.Navigator.view("buku");
         this.setVisible(false);
     }//GEN-LAST:event_buttonBukuActionPerformed
 
     private void buttonPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPelangganActionPerformed
-        routes.Navigator.showPelangganPage();
+        jmvc.Navigator.view("pelanggan");
         this.setVisible(false);
     }//GEN-LAST:event_buttonPelangganActionPerformed
 
@@ -145,7 +145,7 @@ public class HomePage extends javax.swing.JFrame {
     private void buttonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogoutActionPerformed
         database.Session.setUserId(0);
         
-        routes.Navigator.showLoginPage();
+        jmvc.Navigator.view("login");
         this.setVisible(false);
     }//GEN-LAST:event_buttonLogoutActionPerformed
 

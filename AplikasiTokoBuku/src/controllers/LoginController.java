@@ -22,21 +22,31 @@ public class LoginController {
     }
     
     public void handleLogin() {
-        view.textLoginStatus.setVisible(true);
-        
         String username = view.inputUsername.getText();
         char[] passwordChars = view.inputPassword.getPassword();
         String password = new String(passwordChars);
         
-        if ( model.authenticateUser(username, password) ) {
-            routes.Navigator.showHomePage();
-            view.setVisible(false);
-        } else {
-//            javax.swing.JOptionPane.showMessageDialog(this, "AKUN TIDAK DITEMUKAN!");
-            view.textLoginStatus.setText("AKUN TIDAK DITEMUKAN!");
-            view.inputUsername.setText("");
-            view.inputPassword.setText("");
-            view.inputUsername.requestFocus();
+        String authenticationStatus = model.getUserAuthenticationStatus(username, password);
+        switch ( authenticationStatus ) {
+            case "found" -> {
+                jmvc.Navigator.view("home");
+                view.setVisible(false);
+            }
+            case "notFound" -> {
+                // javax.swing.JOptionPane.showMessageDialog(view, "AKUN TIDAK DITEMUKAN!");
+                view.textLoginStatus.setText("AKUN TIDAK DITEMUKAN!");
+            }
+            case "connectionError" -> {
+                view.textLoginStatus.setText("TERJADI KESALAHAN PADA KONEKSI DATABASE!");
+            }
+            default -> {
+                view.textLoginStatus.setText("TERJADI KESALAHAN PADA APLIKASI!");
+            }
         }
+        
+        view.textLoginStatus.setVisible(true);
+        view.inputUsername.setText("");
+        view.inputPassword.setText("");
+        view.inputUsername.requestFocus();
     }
 }

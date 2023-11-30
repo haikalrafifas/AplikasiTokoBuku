@@ -57,20 +57,20 @@ public class PelangganPage extends javax.swing.JFrame {
 
             },
             new String[] {
-                "ID Pelanggan", "Nama", "Gender"
+                "Kode Pelanggan", "Nama", "Gender"
             })
         );
-        String[] columns = {"kd_pelanggan", "nama_pelanggan", "jenis_kelamin"};
+        String[] columns = {"Kode Pelanggan", "Nama", "Gender"};
 
         DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
 
         try {
             while ( dataPelanggan.next() ) {
-                String id = "" + dataPelanggan.getInt("kd_pelanggan");
-                String nama = dataPelanggan.getString("nama_pelanggan");
-                String gender = dataPelanggan.getString("jenis_kelamin");
-
-                String[] data = { id, nama, gender };
+                String[] data = {
+                    dataPelanggan.getString("kd_pelanggan"),
+                    dataPelanggan.getString("nama_pelanggan"),
+                    dataPelanggan.getString("jenis_kelamin")
+                };
 
                 tableModel.addRow(data);
             }
@@ -110,7 +110,7 @@ public class PelangganPage extends javax.swing.JFrame {
     private void buttonBackHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackHomeActionPerformed
         // TODO add your handling code here:
 //        homePage.setVisible(true);
-        routes.Navigator.showHomePage();
+        jmvc.Navigator.view("home");
         this.setVisible(false);
     }//GEN-LAST:event_buttonBackHomeActionPerformed
 

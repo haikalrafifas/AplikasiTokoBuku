@@ -5,7 +5,7 @@ package models;
  * @author Kelompok urut 2
  */
 public class Login {
-    public static boolean authenticateUser(String username, String password) {
+    public static String getUserAuthenticationStatus(String username, String password) {
         String query = "SELECT id FROM login WHERE username = ? AND password = ?";
         
         database.SQLConnection koneksi = new database.SQLConnection();
@@ -15,12 +15,12 @@ public class Login {
             if ( result.next() ) {
                 database.Session.setUserId(result.getInt("id"));
                 database.Session.setValidStatus(true);
-                return true;
+                return "found";
+            } else {
+                return "notFound";
             }
         } catch ( java.sql.SQLException e ) {
-            System.out.println(e);
+            return "connectionError";
         }
-
-        return false;
     }
 }

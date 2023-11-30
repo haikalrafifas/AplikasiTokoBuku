@@ -5,7 +5,7 @@
 public class AplikasiKasirTokoBuku {
 
     public static void main(String[] args) {
-        routes.Navigator.showLoginPage();
+        jmvc.Navigator.view("login");
     }
     
 }

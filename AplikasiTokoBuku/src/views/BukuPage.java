@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package views;
 
 /**
@@ -299,7 +295,7 @@ public class BukuPage extends javax.swing.JFrame {
 
     private void BTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTambahActionPerformed
         bukuController.handleAddData();
-        routes.Navigator.showBukuPage();
+        jmvc.Navigator.view("buku");
         this.setVisible(false);
     }//GEN-LAST:event_BTambahActionPerformed
 
@@ -311,7 +307,7 @@ public class BukuPage extends javax.swing.JFrame {
     }//GEN-LAST:event_BResetActionPerformed
 
     private void BBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBackActionPerformed
-        routes.Navigator.showHomePage();
+        jmvc.Navigator.view("home");
         this.setVisible(false);
     }//GEN-LAST:event_BBackActionPerformed
 

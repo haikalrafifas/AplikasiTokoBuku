@@ -1,4 +1,4 @@
-*/build/
-*/nbproject/private
-*/test/
-*/src/views/*.form
+/*/build/
+/*/dist/
+/*/nbproject/private
+/*/test/
