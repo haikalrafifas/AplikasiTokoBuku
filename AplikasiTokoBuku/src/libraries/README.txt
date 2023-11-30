@@ -1,0 +1,1 @@
+Tempat untuk simpan library lokal, seperti custom library, atau library lainnya yang tidak terdapat dalam Java SE.
