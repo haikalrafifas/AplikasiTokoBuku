@@ -1,1 +1,0 @@
-Tempat untuk semua asset seperti icon, gif, dan gambar.
