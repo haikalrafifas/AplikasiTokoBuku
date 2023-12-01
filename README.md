@@ -29,3 +29,16 @@ Aplikasi ini menerapkan framework MVC, sehingga penataan file menjadi lebih sesu
 |**views**|Tempat menyimpan file view pada framework MVC.|
 
 Disarankan juga untuk mengikuti konvensi penamaan file dan struktur kode sumber yang konsisten semasa tahap pengembangan.
+
+### MVC Pattern
+
+Aplikasi ini menggunakan custom library dengan nama `jframe-mvc` dengan nama package `jmvc.*`, Library ini berguna untuk keperluan aplikasi MVC JFrame seperti navigasi antar halaman `jmvc.Navigator`, dan utility untuk meng-generate file MVC `jmvc.MVCFactory`. Berikut cara untuk generate file MVC menggunakan library ini:
+
+1. Buka terminal/console di tempat kode sumber ini
+2. Jalankan perintah dibawah:
+   ```
+   java -cp ./build/classes jmvc.MVCFactory createMVC <Nama>
+   ```
+   variabel `<Nama>` bisa anda ganti dengan nama untuk generate file nya (selama huruf kapital di awal), seperti contoh: App, Login, Test, dan lainnya.
+3. Jika berhasil, maka akan ada beberapa file baru di folder `src` seperti `src/controllers/<Nama>Controller.java`, `src/models/<Nama>.java`, dan `src/views/<Nama>Page.java`.
+4. Perlu diingat bahwa jika Anda sebelum nya sudah membuat sebuah class JFrame di folder `views`, jangan sampai nama file nya bersamaan dengan nama file MVC yang akan di generate, karena akan ada kemungkinan Anda kehilangan progress GUI Anda di page tersebut.
