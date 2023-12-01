@@ -46,4 +46,21 @@ public class BukuController {
     public java.sql.ResultSet getBookData() {
         return model.getBookData();
     }
+    
+    public void handleDeleteData(String kd_buku){
+        int choice = javax.swing.JOptionPane.showConfirmDialog(null, "Konfirmasi Hapus", "KOnfirmasi", javax.swing.JOptionPane.YES_NO_OPTION);
+        if(choice == javax.swing.JOptionPane.YES_OPTION){
+            boolean isSuccessDelete = model.deleteBookData(kd_buku);
+            String message;
+            if ( isSuccessDelete ) {
+                message = "DATA BERHASIL DIHAPUS!";
+            } else {
+                message = "DATA GAGAL DIHAPUS!";
+            }
+
+            javax.swing.JOptionPane.showMessageDialog(view, message);
+            jmvc.Navigator.view("buku");
+            view.setVisible(false);
+        } 
+    }
 }

@@ -30,4 +30,16 @@ public class Buku {
         return koneksi.doQuery(query);
         
     }
+    
+    public boolean deleteBookData(String kd_buku){
+        String query = "DELETE FROM buku WHERE kd_buku = ?";
+        
+        database.SQLConnection koneksi = new database.SQLConnection();
+        
+        boolean isSuccessDelete = koneksi.doPreparedUpdate(query,
+            kd_buku
+        );
+        
+        return isSuccessDelete;
+    }
 }

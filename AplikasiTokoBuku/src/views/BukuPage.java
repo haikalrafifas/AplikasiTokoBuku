@@ -2,6 +2,10 @@ package views;
 
 import javax.swing.table.DefaultTableModel;
 
+
+//jmvc.Navigator.view("home");
+//       this.setVisible(false);
+
 /**
  *
  * @author Samuel
@@ -11,6 +15,7 @@ public class BukuPage extends javax.swing.JFrame {
    private controllers.BukuController bukuController;
    private java.sql.ResultSet dataBuku;
     
+    private String kd_buku_hapus;
     /**
      * Creates new form buku
      */
@@ -78,10 +83,10 @@ public class BukuPage extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TData = new javax.swing.JTable();
-        JButton1 = new javax.swing.JButton();
+        BTambah = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         TFStok = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        BHapus = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -167,68 +172,81 @@ public class BukuPage extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TData);
 
-        JButton1.setText("Tambah");
+        BTambah.setText("Tambah");
+        BTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTambahActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Harga Pokok");
 
         TFStok.setText("jTextField4");
 
-        jButton2.setText("Hapus");
+        BHapus.setText("Hapus");
+        BHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BHapusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(48, 48, 48)
-                        .addComponent(TFPenerbit))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TFkode)
-                            .addComponent(TFJudul)
-                            .addComponent(CBJenis, 0, 107, Short.MAX_VALUE)
-                            .addComponent(TFPenulis)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(59, 59, 59)
-                        .addComponent(TFTahun))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(BReset)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(JButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                                .addComponent(BReset))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(BTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                                .addComponent(BHapus)))
                         .addGap(12, 12, 12))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TFHargaJual)
-                            .addComponent(TFHargaPokok)
-                            .addComponent(TFStok))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton3)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addGap(48, 48, 48)
+                            .addComponent(TFPenerbit))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGap(34, 34, 34)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(TFkode)
+                                .addComponent(TFJudul)
+                                .addComponent(CBJenis, 0, 107, Short.MAX_VALUE)
+                                .addComponent(TFPenulis)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addGap(59, 59, 59)
+                            .addComponent(TFTahun))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel9))
+                            .addGap(22, 22, 22)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(TFHargaJual)
+                                .addComponent(TFHargaPokok)
+                                .addComponent(TFStok)))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(130, Short.MAX_VALUE)
+                .addContainerGap(63, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -269,8 +287,8 @@ public class BukuPage extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JButton1)
-                    .addComponent(jButton2))
+                    .addComponent(BTambah)
+                    .addComponent(BHapus))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
@@ -303,6 +321,7 @@ public class BukuPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) TData.getModel();
         int selectedRow = TData.getSelectedRow();
+        kd_buku_hapus = model.getValueAt(selectedRow, 0).toString();
         try{
             TFkode.setText(model.getValueAt(selectedRow, 0).toString());
             TFTahun.setText(model.getValueAt(selectedRow, 5).toString());
@@ -323,21 +342,27 @@ public class BukuPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TDataMouseClicked
 
+    private void BHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BHapusActionPerformed
+        // TODO add your handling code here:
+        bukuController.handleDeleteData(kd_buku_hapus);
+        
+    }//GEN-LAST:event_BHapusActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BHapus;
     private javax.swing.JButton BReset;
-    private javax.swing.JComboBox<String> CBJenis;
-    private javax.swing.JButton JButton1;
+    private javax.swing.JButton BTambah;
+    public javax.swing.JComboBox<String> CBJenis;
     private javax.swing.JTable TData;
-    private javax.swing.JTextField TFHargaJual;
-    private javax.swing.JTextField TFHargaPokok;
-    private javax.swing.JTextField TFJudul;
-    private javax.swing.JTextField TFPenerbit;
-    private javax.swing.JTextField TFPenulis;
-    private javax.swing.JTextField TFStok;
-    private javax.swing.JTextField TFTahun;
-    private javax.swing.JTextField TFkode;
-    private javax.swing.JButton jButton2;
+    public javax.swing.JTextField TFHargaJual;
+    public javax.swing.JTextField TFHargaPokok;
+    public javax.swing.JTextField TFJudul;
+    public javax.swing.JTextField TFPenerbit;
+    public javax.swing.JTextField TFPenulis;
+    public javax.swing.JTextField TFStok;
+    public javax.swing.JTextField TFTahun;
+    public javax.swing.JTextField TFkode;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
