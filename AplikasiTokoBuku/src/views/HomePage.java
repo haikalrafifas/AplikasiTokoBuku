@@ -6,45 +6,20 @@ package views;
  */
 public class HomePage extends javax.swing.JFrame {
     
-    private LoginPage loginPage;
+    private controllers.HomeController homeController;
 
     /**
      * Creates new form HomePage
      */
-    public HomePage(LoginPage loginPage) {
-        this.loginPage = loginPage;
-        
+    public HomePage(controllers.HomeController homeController) {
+        this.homeController = homeController;
         initComponents();
-        
-        String nama = getUserName();
-        javax.swing.SwingUtilities.invokeLater(() -> {
-            textWelcome.setText("Halo, " + nama + " !");
-        });
+        setWelcomeText();
     }
     
-    private String getUserName() {
-        database.MySQL koneksi = new database.MySQL();
-        java.sql.ResultSet result;
-        
-        result = koneksi.doPreparedQuery("SELECT nama FROM user WHERE id = ?", database.Session.getUserId());
-        
-        try {
-            if ( result.next() ) {
-                return result.getString("nama");
-            }
-        } catch ( java.sql.SQLException e ) {
-            System.out.println(e);
-        }
-
-        return "PANJUL";
-    }
-    
-    private void doLogout() {
-        database.Session.setUserId(0);
-        
-        LoginPage loginPage = new LoginPage();
-        loginPage.setVisible(true);
-        this.setVisible(false);
+    private void setWelcomeText() {
+        String nama = homeController.getUserName();
+        textWelcome.setText("Halo, " + nama + " !");
     }
 
     /**
@@ -56,7 +31,7 @@ public class HomePage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        buttonBuku = new javax.swing.JButton();
         buttonPelanggan = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         buttonLogout = new javax.swing.JButton();
@@ -68,10 +43,10 @@ public class HomePage extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(800, 500));
 
-        jButton1.setText("Buku");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonBuku.setText("Buku");
+        buttonBuku.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonBukuActionPerformed(evt);
             }
         });
 
@@ -116,7 +91,7 @@ public class HomePage extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(buttonPelanggan, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(buttonBuku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -139,7 +114,7 @@ public class HomePage extends javax.swing.JFrame {
                 .addComponent(textWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,16 +128,13 @@ public class HomePage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void buttonBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBukuActionPerformed
+        jmvc.Navigator.view("buku");
+        this.setVisible(false);
+    }//GEN-LAST:event_buttonBukuActionPerformed
 
     private void buttonPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPelangganActionPerformed
-        // TODO add your handling code here:
-        System.out.println("PELANGGAN!");
-        
-        PelangganPage pelangganPage = new PelangganPage(this);
-        pelangganPage.setVisible(true);
+        jmvc.Navigator.view("pelanggan");
         this.setVisible(false);
     }//GEN-LAST:event_buttonPelangganActionPerformed
 
@@ -171,7 +143,10 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void buttonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogoutActionPerformed
-        doLogout();
+        database.Session.setUserId(0);
+        
+        jmvc.Navigator.view("login");
+        this.setVisible(false);
     }//GEN-LAST:event_buttonLogoutActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -180,9 +155,9 @@ public class HomePage extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonBuku;
     private javax.swing.JButton buttonLogout;
     private javax.swing.JButton buttonPelanggan;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel textWelcome;

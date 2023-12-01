@@ -8,15 +8,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 //import java.sql.QueryResult;
 
-public class MySQL {
+public class SQLConnection {
     protected static Connection koneksi;
     private static Statement stmt;
     private static ResultSet result;
     
-    public MySQL() {
+    public SQLConnection() {
         Config c = new Config();
         try {
-            koneksi = DriverManager.getConnection("jdbc:"+c.DB_DRIVER_NAME+"://"+c.DB_HOST+":"+c.DB_PORT+"/"+c.DB_NAME, c.DB_USER, c.DB_PASS);
+            koneksi = DriverManager.getConnection("jdbc:"+c.DB_DRIVER_NAME+"://"+c.DB_HOST+":"+c.DB_PORT+"/"+c.DB_NAME, c.DB_USER, "");
         } catch ( SQLException e ) {
             System.out.println(e);
         }
@@ -63,6 +63,25 @@ public class MySQL {
             System.out.println(e);
         }
         return null;
+    }
+    
+    public static boolean doPreparedUpdate(String query, Object... parameters) {
+        try {
+            Connection connection = getConnection();
+            PreparedStatement pstmt = null;
+            
+            pstmt = connection.prepareStatement(query);
+            for (int i = 0; i < parameters.length; i++) {
+                pstmt.setObject(i + 1, parameters[i]);
+            }
+            
+            int rowsAffected = pstmt.executeUpdate();
+
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
     }
     
     public static void closeConnection() {

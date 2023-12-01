@@ -5,54 +5,23 @@ package views;
  * @author Kelompok urut 2
  */
 public class LoginPage extends javax.swing.JFrame {
+    
+    private controllers.LoginController loginController;
 
     /**
      * Creates new form LoginPage
      */
-    public LoginPage() {
+    public LoginPage(controllers.LoginController loginController) {
+        this.loginController = loginController;
         initComponents();
         
         if ( database.Session.getValidStatus() ) {
-//            javax.swing.JOptionPane.showMessageDialog(this, "ANDA TELAH LOGOUT!");
+            // javax.swing.JOptionPane.showMessageDialog(this, "ANDA TELAH LOGOUT!");
             textLoginStatus.setText("ANDA TELAH LOGOUT!");
             database.Session.setValidStatus(false);
         } else {
             textLoginStatus.setVisible(false);
         }
-    }
-    
-    private void doLoginSequence() {
-        String username = inputUsername.getText();
-        char[] passwordChars = inputPassword.getPassword();
-        String password = new String(passwordChars);
-        
-        if ( authenticateUser(username, password) ) {
-            HomePage homePage = new HomePage(this);
-            homePage.setVisible(true);
-            this.setVisible(false);
-        } else {
-//            javax.swing.JOptionPane.showMessageDialog(this, "AKUN TIDAK DITEMUKAN!");
-            textLoginStatus.setText("AKUN TIDAK DITEMUKAN!");
-        }
-    }
-    
-    private boolean authenticateUser(String username, String password) {
-        database.MySQL koneksi = new database.MySQL();
-        java.sql.ResultSet result;
-        
-        result = koneksi.doPreparedQuery("SELECT id FROM user WHERE username = ? AND password = ?", username, password);
-        
-        try {
-            if ( result.next() ) {
-                database.Session.setUserId(result.getInt("id"));
-                database.Session.setValidStatus(true);
-                return true;
-            }
-        } catch ( java.sql.SQLException e ) {
-            System.out.println(e);
-        }
-
-        return false;
     }
 
     /**
@@ -68,14 +37,24 @@ public class LoginPage extends javax.swing.JFrame {
         inputPassword = new javax.swing.JPasswordField();
         buttonLogin = new javax.swing.JButton();
         textLoginStatus = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 500));
         setSize(new java.awt.Dimension(800, 500));
 
-        inputUsername.setText("Username");
+        inputUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputUsernameKeyPressed(evt);
+            }
+        });
 
-        inputPassword.setText("jPasswordField1");
+        inputPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputPasswordKeyPressed(evt);
+            }
+        });
 
         buttonLogin.setText("Login");
         buttonLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -87,16 +66,14 @@ public class LoginPage extends javax.swing.JFrame {
         textLoginStatus.setText("Login Status");
         textLoginStatus.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
+        jLabel1.setText("USERNAME");
+
+        jLabel2.setText("PASSWORD");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(inputPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
-                    .addComponent(inputUsername))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(476, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,36 +83,60 @@ public class LoginPage extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(textLoginStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(102, 102, 102))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(inputPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                        .addComponent(inputUsername))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(73, 73, 73)
+                .addGap(39, 39, 39)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addComponent(inputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(textLoginStatus)
-                .addGap(39, 39, 39)
+                .addGap(17, 17, 17)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
                 .addComponent(buttonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(83, Short.MAX_VALUE))
         );
 
-        textLoginStatus.getAccessibleContext().setAccessibleName("Login Status");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
-        textLoginStatus.setVisible(true);
-        doLoginSequence();
+        loginController.handleLogin();
     }//GEN-LAST:event_buttonLoginActionPerformed
+
+    private void inputPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputPasswordKeyPressed
+        if ( evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER ) {
+            loginController.handleLogin();
+        }
+    }//GEN-LAST:event_inputPasswordKeyPressed
+
+    private void inputUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputUsernameKeyPressed
+        if ( evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER ) {
+            inputPassword.requestFocus();
+        }
+    }//GEN-LAST:event_inputUsernameKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLogin;
-    private javax.swing.JPasswordField inputPassword;
-    private javax.swing.JTextField inputUsername;
-    private javax.swing.JLabel textLoginStatus;
+    public javax.swing.JPasswordField inputPassword;
+    public javax.swing.JTextField inputUsername;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    public javax.swing.JLabel textLoginStatus;
     // End of variables declaration//GEN-END:variables
 }

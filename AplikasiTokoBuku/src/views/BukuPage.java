@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package views;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -10,11 +8,16 @@ package views;
  */
 public class BukuPage extends javax.swing.JFrame {
 
-   
+   private controllers.BukuController bukuController;
+   private java.sql.ResultSet dataBuku;
+    
     /**
      * Creates new form buku
      */
-    public BukuPage() {
+    public BukuPage(controllers.BukuController bukuController) {
+        this.bukuController = bukuController;
+        dataBuku = bukuController.getBookData();
+        
         initComponents();
         
         CBJenis.addItem("PILIH");
@@ -74,7 +77,7 @@ public class BukuPage extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TData = new javax.swing.JTable();
         JButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         TFStok = new javax.swing.JTextField();
@@ -121,7 +124,7 @@ public class BukuPage extends javax.swing.JFrame {
 
         jLabel7.setText("Stok");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -129,17 +132,42 @@ public class BukuPage extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "No", "Kode Buku", "Judul", "Jenis", "Penulis", "Tahun", "Stok", "Harga Pokok", "Harga Jual"
+                "Kode Buku", "Judul", "Jenis", "Penulis", "Penerbit", "Tahun", "Stok", "Harga Pokok", "Harga Jual"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        String[] columns = {"Kode Buku", "Judul", "Jenis", "Penulis", "Penerbit", "Tahun", "Stok", "Harga Pokok", "Harga Jual"};
 
-        JButton1.setText("Tambah");
-        JButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JButton1ActionPerformed(evt);
+        javax.swing.table.DefaultTableModel tableModel = new javax.swing.table.DefaultTableModel(columns, 0);
+
+        try {
+            while ( dataBuku.next() ) {
+                String[] data = {
+                    dataBuku.getString("kd_buku"),
+                    dataBuku.getString("judul"),
+                    dataBuku.getString("jenis"),
+                    dataBuku.getString("penulis"),
+                    dataBuku.getString("penerbit"),
+                    dataBuku.getString("tahun"),
+                    Integer.toString(dataBuku.getInt("stok")),
+                    Integer.toString(dataBuku.getInt("harga_pokok")),
+                    Integer.toString(dataBuku.getInt("harga_jual"))
+                };
+
+                tableModel.addRow(data);
+            }
+        } catch ( java.sql.SQLException e ) {
+            System.out.println(e);
+        }
+
+        TData.setModel(tableModel);
+        TData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TDataMouseClicked(evt);
             }
         });
+        jScrollPane1.setViewportView(TData);
+
+        JButton1.setText("Tambah");
 
         jLabel8.setText("Harga Pokok");
 
@@ -253,9 +281,11 @@ public class BukuPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JButton1ActionPerformed
+    private void BTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTambahActionPerformed
+        bukuController.handleAddData();
+        jmvc.Navigator.view("buku");
+        this.setVisible(false);
+    }//GEN-LAST:event_BTambahActionPerformed
 
     private void BResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BResetActionPerformed
         // TODO add your handling code here:
@@ -264,46 +294,41 @@ public class BukuPage extends javax.swing.JFrame {
         CBJenis.requestFocus();
     }//GEN-LAST:event_BResetActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void BBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBackActionPerformed
+        jmvc.Navigator.view("home");
+        this.setVisible(false);
+    }//GEN-LAST:event_BBackActionPerformed
+
+    private void TDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TDataMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) TData.getModel();
+        int selectedRow = TData.getSelectedRow();
+        try{
+            TFkode.setText(model.getValueAt(selectedRow, 0).toString());
+            TFTahun.setText(model.getValueAt(selectedRow, 5).toString());
+            TFStok.setText(model.getValueAt(selectedRow, 6).toString());
+            String comboSub =model.getValueAt(selectedRow, 2).toString();
+            for (int i = 0; i < CBJenis.getItemCount();i++){
+                if(CBJenis.getItemAt(i).toString().equalsIgnoreCase(comboSub)) {
+                   CBJenis.setSelectedIndex(i);
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BukuPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BukuPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BukuPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BukuPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            TFPenulis.setText(model.getValueAt(selectedRow, 3).toString());
+            TFPenerbit.setText(model.getValueAt(selectedRow, 4).toString());
+            TFJudul.setText(model.getValueAt(selectedRow, 1).toString());
+            TFHargaPokok.setText(model.getValueAt(selectedRow, 7).toString());
+            TFHargaJual.setText(model.getValueAt(selectedRow, 8).toString());
+        }catch(Exception e){
+            
         }
-        //</editor-fold>
-        //</editor-fold>
+    }//GEN-LAST:event_TDataMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BukuPage().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BReset;
     private javax.swing.JComboBox<String> CBJenis;
     private javax.swing.JButton JButton1;
+    private javax.swing.JTable TData;
     private javax.swing.JTextField TFHargaJual;
     private javax.swing.JTextField TFHargaPokok;
     private javax.swing.JTextField TFJudul;
@@ -324,6 +349,5 @@ public class BukuPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

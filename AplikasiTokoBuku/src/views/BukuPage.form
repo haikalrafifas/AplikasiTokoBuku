@@ -257,25 +257,77 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="TData">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor" postCode="String[] columns = {&quot;Kode Buku&quot;, &quot;Judul&quot;, &quot;Jenis&quot;, &quot;Penulis&quot;, &quot;Penerbit&quot;, &quot;Tahun&quot;, &quot;Stok&quot;, &quot;Harga Pokok&quot;, &quot;Harga Jual&quot;};&#xa;&#xa;javax.swing.table.DefaultTableModel tableModel = new javax.swing.table.DefaultTableModel(columns, 0);&#xa;&#xa;try {&#xa;    while ( dataBuku.next() ) {&#xa;        String[] data = {&#xa;            dataBuku.getString(&quot;kd_buku&quot;),&#xa;            dataBuku.getString(&quot;judul&quot;),&#xa;            dataBuku.getString(&quot;jenis&quot;),&#xa;            dataBuku.getString(&quot;penulis&quot;),&#xa;            dataBuku.getString(&quot;penerbit&quot;),&#xa;            dataBuku.getString(&quot;tahun&quot;),&#xa;            Integer.toString(dataBuku.getInt(&quot;stok&quot;)),&#xa;            Integer.toString(dataBuku.getInt(&quot;harga_pokok&quot;)),&#xa;            Integer.toString(dataBuku.getInt(&quot;harga_jual&quot;))&#xa;        };&#xa;&#xa;        tableModel.addRow(data);&#xa;    }&#xa;} catch ( java.sql.SQLException e ) {&#xa;    System.out.println(e);&#xa;}&#xa;&#xa;TData.setModel(tableModel);">
               <Table columnCount="9" rowCount="4">
-                <Column editable="true" title="No" type="java.lang.Object"/>
                 <Column editable="true" title="Kode Buku" type="java.lang.Object"/>
                 <Column editable="true" title="Judul" type="java.lang.Object"/>
                 <Column editable="true" title="Jenis" type="java.lang.Object"/>
                 <Column editable="true" title="Penulis" type="java.lang.Object"/>
+                <Column editable="true" title="Penerbit" type="java.lang.Object"/>
                 <Column editable="true" title="Tahun" type="java.lang.Object"/>
                 <Column editable="true" title="Stok" type="java.lang.Object"/>
                 <Column editable="true" title="Harga Pokok" type="java.lang.Object"/>
                 <Column editable="true" title="Harga Jual" type="java.lang.Object"/>
               </Table>
             </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+              </TableColumnModel>
+            </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TDataMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -283,9 +335,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Tambah"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JButton1ActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>

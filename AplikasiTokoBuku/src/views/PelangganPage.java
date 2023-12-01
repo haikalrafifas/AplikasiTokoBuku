@@ -9,18 +9,20 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PelangganPage extends javax.swing.JFrame {
     
-    private HomePage homePage;
+    private controllers.PelangganController pelangganController;
     private ResultSet dataPelanggan;
 
     /**
      * Creates new form AnggotaPage
      */
-    public PelangganPage(HomePage homePage) {
-        this.homePage = homePage;
+    public PelangganPage(controllers.PelangganController pelangganController) {
+        this.pelangganController = pelangganController;
         
-        database.MySQL koneksi = new database.MySQL();
-        String query = "SELECT id, nama, gender FROM pelanggan";
-        dataPelanggan = koneksi.doQuery(query);
+        dataPelanggan = pelangganController.getPelangganData();
+        
+//        database.SQLConnection koneksi = new database.SQLConnection();
+//        String query = "SELECT id, nama, gender FROM pelanggan";
+//        dataPelanggan = koneksi.doQuery(query);
         
         initComponents();
     }
@@ -55,20 +57,20 @@ public class PelangganPage extends javax.swing.JFrame {
 
             },
             new String[] {
-                "ID Pelanggan", "Nama", "Gender"
+                "Kode Pelanggan", "Nama", "Gender"
             })
         );
-        String[] columns = {"id", "nama", "gender"};
+        String[] columns = {"Kode Pelanggan", "Nama", "Gender"};
 
         DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
 
         try {
             while ( dataPelanggan.next() ) {
-                String id = "" + dataPelanggan.getInt("id");
-                String nama = dataPelanggan.getString("nama");
-                String gender = dataPelanggan.getString("gender");
-
-                String[] data = { id, nama, gender };
+                String[] data = {
+                    dataPelanggan.getString("kd_pelanggan"),
+                    dataPelanggan.getString("nama_pelanggan"),
+                    dataPelanggan.getString("jenis_kelamin")
+                };
 
                 tableModel.addRow(data);
             }
@@ -107,7 +109,8 @@ public class PelangganPage extends javax.swing.JFrame {
 
     private void buttonBackHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackHomeActionPerformed
         // TODO add your handling code here:
-        homePage.setVisible(true);
+//        homePage.setVisible(true);
+        jmvc.Navigator.view("home");
         this.setVisible(false);
     }//GEN-LAST:event_buttonBackHomeActionPerformed
 
