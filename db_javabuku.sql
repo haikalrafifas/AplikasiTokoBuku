@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Nov 2023 pada 08.19
+-- Waktu pembuatan: 01 Des 2023 pada 05.41
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -48,7 +48,8 @@ INSERT INTO `buku` (`kd_buku`, `judul`, `jenis`, `penulis`, `penerbit`, `tahun`,
 ('K0002', 'Naruto Shippuden', 'Komik', 'Masashi Kishimoto', 'Gunung Agung', '2000', 30, 50000, 70000),
 ('K0003', 'One Piece', 'Komik', 'Echiro Oda', 'Gramedia', '2001', 35, 45000, 60000),
 ('K0004', 'Spy X Family', 'Komik', 'Endo Tatsuya', 'T. Harapan', '2018', 26, 45000, 55000),
-('K0005', 'Jojo’s Bizarre Adventure', 'Komik', 'Hirohiko Araki', 'Flyer', '1999', 23, 70000, 90000);
+('K0005', 'Jojo’s Bizarre Adventure', 'Komik', 'Hirohiko Araki', 'Flyer', '1999', 23, 70000, 90000),
+('K0006', 'Tintin', 'Komik', 'Herge', 'Gunung Agung', '1929', 18, 55000, 80000);
 
 -- --------------------------------------------------------
 
@@ -79,9 +80,18 @@ INSERT INTO `distributor` (`kd_distributor`, `nama_distributor`, `alamat`, `tele
 --
 
 CREATE TABLE `login` (
+  `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(50) NOT NULL,
+  `nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `login`
+--
+
+INSERT INTO `login` (`id`, `username`, `password`, `nama`) VALUES
+(1, 'admin1', 'admin1', 'Haikal');
 
 -- --------------------------------------------------------
 
@@ -148,6 +158,12 @@ ALTER TABLE `distributor`
   ADD PRIMARY KEY (`kd_distributor`);
 
 --
+-- Indeks untuk tabel `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `pelanggan`
 --
 ALTER TABLE `pelanggan`
@@ -158,6 +174,16 @@ ALTER TABLE `pelanggan`
 --
 ALTER TABLE `penjualan`
   ADD PRIMARY KEY (`kd_pretransaksi`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `login`
+--
+ALTER TABLE `login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
