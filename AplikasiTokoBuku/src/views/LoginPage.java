@@ -148,13 +148,13 @@ public class LoginPage extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonLogin;
-    private javax.swing.JPasswordField inputPassword;
-    private javax.swing.JTextField inputUsername;
+    public javax.swing.JButton buttonLogin;
+    public javax.swing.JPasswordField inputPassword;
+    public javax.swing.JTextField inputUsername;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel textLoginStatus;
+    public javax.swing.JLabel textLoginStatus;
     // End of variables declaration//GEN-END:variables
 }
