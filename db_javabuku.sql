@@ -26,6 +26,8 @@ SET time_zone = "+00:00";
 --
 -- Struktur dari tabel `buku`
 --
+CREATE database db_javabuku;
+use db_javabuku;
 
 CREATE TABLE `buku` (
   `kd_buku` varchar(6) NOT NULL,
@@ -84,7 +86,9 @@ CREATE TABLE `login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
-
+-- Insert data username
+INSERT INTO login (username, password) VALUES
+ ('admin', '123');
 --
 -- Struktur dari tabel `pelanggan`
 --
@@ -99,6 +103,7 @@ CREATE TABLE `pelanggan` (
 --
 -- Dumping data untuk tabel `pelanggan`
 --
+
 
 INSERT INTO `pelanggan` (`kd_pelanggan`, `nama_pelanggan`, `jenis_kelamin`, `alamat`) VALUES
 ('PL001', 'Samuel Sihombing', 'L', 'Jalan Dukuh Depok'),
