@@ -26,8 +26,6 @@ SET time_zone = "+00:00";
 --
 -- Struktur dari tabel `buku`
 --
-CREATE database db_javabuku;
-use db_javabuku;
 
 CREATE TABLE `buku` (
   `kd_buku` varchar(6) NOT NULL,
@@ -77,20 +75,17 @@ INSERT INTO `distributor` (`kd_distributor`, `nama_distributor`, `alamat`, `tele
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `login`
+--
+
 CREATE TABLE `login` (
-  `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `nama` varchar(50) NOT NULL
+  `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data untuk tabel `login`
---
+-- --------------------------------------------------------
 
-INSERT INTO `login` (`id`, `username`, `password`, `nama`) VALUES
-(1, 'admin1', '123', 'Haikal');
-
+--
 -- Struktur dari tabel `pelanggan`
 --
 
@@ -104,7 +99,6 @@ CREATE TABLE `pelanggan` (
 --
 -- Dumping data untuk tabel `pelanggan`
 --
-
 
 INSERT INTO `pelanggan` (`kd_pelanggan`, `nama_pelanggan`, `jenis_kelamin`, `alamat`) VALUES
 ('PL001', 'Samuel Sihombing', 'L', 'Jalan Dukuh Depok'),
@@ -141,11 +135,7 @@ INSERT INTO `penjualan` (`kd_pretransaksi`, `kd_transaksi`, `kd_pelanggan`, `kd_
 -- Indexes for dumped tables
 --
 
-
--- Indeks untuk tabel `login`
 --
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`id`);
 -- Indeks untuk tabel `buku`
 --
 ALTER TABLE `buku`
@@ -168,15 +158,6 @@ ALTER TABLE `pelanggan`
 --
 ALTER TABLE `penjualan`
   ADD PRIMARY KEY (`kd_pretransaksi`);
-
--- AUTO_INCREMENT untuk tabel yang dibuang
---
-
---
--- AUTO_INCREMENT untuk tabel `login`
---
-ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

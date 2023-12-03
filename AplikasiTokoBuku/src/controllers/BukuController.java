@@ -46,4 +46,45 @@ public class BukuController {
     public java.sql.ResultSet getBookData() {
         return model.getBookData();
     }
+    
+    public void handleDeleteData(String kd_buku){
+        int choice = javax.swing.JOptionPane.showConfirmDialog(null, "Konfirmasi Hapus", "KOnfirmasi", javax.swing.JOptionPane.YES_NO_OPTION);
+        if(choice == javax.swing.JOptionPane.YES_OPTION){
+            boolean isSuccessDelete = model.deleteBookData(kd_buku);
+            String message;
+            if ( isSuccessDelete ) {
+                message = "DATA BERHASIL DIHAPUS!";
+            } else {
+                message = "DATA GAGAL DIHAPUS!";
+            }
+
+            javax.swing.JOptionPane.showMessageDialog(view, message);
+            jmvc.Navigator.view("buku");
+            view.setVisible(false);
+        } 
+    }
+    
+    public boolean handleUpdateData(String kd_buku){
+        boolean isSuccessUpdate = model.updateBookData(
+            view.TFkode.getText(),
+            view.TFJudul.getText(),
+            view.CBJenis.getSelectedItem().toString(),
+            view.TFPenulis.getText(),
+            view.TFPenerbit.getText(),
+            view.TFTahun.getText(),
+            Integer.parseInt(view.TFStok.getText()),
+            Integer.parseInt(view.TFHargaPokok.getText()),
+            Integer.parseInt(view.TFHargaJual.getText())
+        );
+        String message;
+        if ( isSuccessUpdate ) {
+            message = "DATA BARU BERHASIL DIUBAH!";
+        } else {
+            message = "DATA GAGAL DIUBAH!";
+        }
+        
+        javax.swing.JOptionPane.showMessageDialog(view, message); 
+        
+        return isSuccessUpdate;
+    }
 }
