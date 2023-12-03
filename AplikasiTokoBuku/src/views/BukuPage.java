@@ -65,7 +65,7 @@ public class BukuPage extends javax.swing.JFrame {
 
         jLabel9 = new javax.swing.JLabel();
         TFHargaPokok = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        BUbah = new javax.swing.JButton();
         TFHargaJual = new javax.swing.JTextField();
         BReset = new javax.swing.JButton();
         TFPenerbit = new javax.swing.JTextField();
@@ -94,7 +94,12 @@ public class BukuPage extends javax.swing.JFrame {
 
         TFHargaPokok.setText("jTextField5");
 
-        jButton3.setText("Ubah");
+        BUbah.setText("Ubah");
+        BUbah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUbahActionPerformed(evt);
+            }
+        });
 
         TFHargaJual.setText("jTextField6");
 
@@ -210,7 +215,7 @@ public class BukuPage extends javax.swing.JFrame {
                                 .addComponent(BHapus)))
                         .addGap(12, 12, 12))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton3)
+                        .addComponent(BUbah)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel5)
                             .addGap(48, 48, 48)
@@ -291,7 +296,7 @@ public class BukuPage extends javax.swing.JFrame {
                     .addComponent(BHapus))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
+                    .addComponent(BUbah)
                     .addComponent(BReset))
                 .addGap(17, 17, 17))
         );
@@ -348,11 +353,19 @@ public class BukuPage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_BHapusActionPerformed
 
+    private void BUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUbahActionPerformed
+        // TODO add your handling code here:
+        if ( bukuController.handleUpdateData(kd_buku_hapus) ) {
+            jmvc.Navigator.view("buku");
+        }
+    }//GEN-LAST:event_BUbahActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BHapus;
     private javax.swing.JButton BReset;
     private javax.swing.JButton BTambah;
+    private javax.swing.JButton BUbah;
     public javax.swing.JComboBox<String> CBJenis;
     private javax.swing.JTable TData;
     public javax.swing.JTextField TFHargaJual;
@@ -363,7 +376,6 @@ public class BukuPage extends javax.swing.JFrame {
     public javax.swing.JTextField TFStok;
     public javax.swing.JTextField TFTahun;
     public javax.swing.JTextField TFkode;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

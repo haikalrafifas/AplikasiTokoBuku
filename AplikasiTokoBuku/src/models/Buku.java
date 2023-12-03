@@ -42,4 +42,18 @@ public class Buku {
         
         return isSuccessDelete;
     }
+    
+    public boolean updateBookData(String kode, String judul, String jenis, String penulis, String penerbit, String tahun, int stok, int hargaPokok, int hargaJual) {
+        
+        String query = "UPDATE buku SET kd_buku = ?, judul = ? , jenis = ?, penulis = ?, penerbit = ?, tahun = ?, stok = ?, harga_pokok = ?, harga_jual = ? WHERE kd_buku = ?";
+        
+        database.SQLConnection koneksi = new database.SQLConnection();
+        
+        boolean isSuccessUpdate = koneksi.doPreparedUpdate(query,
+            kode, judul, jenis, penulis, penerbit, tahun, stok, hargaPokok, hargaJual, kode
+        );
+        
+        return isSuccessUpdate;
+        
+    }
 }
