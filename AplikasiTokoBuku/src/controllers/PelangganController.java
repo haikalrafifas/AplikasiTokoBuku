@@ -1,5 +1,8 @@
 package controllers;
 
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import models.Pelanggan;
 import views.PelangganPage;
 
@@ -57,6 +60,39 @@ public class PelangganController {
             jmvc.Navigator.view("pelanggan");
             view.setVisible(false);
         } 
+    }
+    
+    public boolean handleUpdateData(String kd_pelanggan){
+        String gender = "P";
+        if(view.RL.isSelected()){
+            gender = "L";
+        }
+        
+        boolean isSuccessUpdate = model.updatePelangganData(
+            view.TFKode.getText(),
+            view.TFNama.getText(),
+            gender,
+            view.TAalamat.getText()
+        );
+        
+        String message;
+        if ( isSuccessUpdate ) {
+            message = "DATA BARU BERHASIL DIUBAH!";
+        } else {
+            message = "DATA GAGAL DIUBAH!";
+        }
+        
+        javax.swing.JOptionPane.showMessageDialog(view, message); 
+        
+        return isSuccessUpdate;
+    }
+    
+    public void handleSearchData(String s){
+        DefaultTableModel ob = (DefaultTableModel) view.TPelanggan.getModel();
+        TableRowSorter<DefaultTableModel> obj = new TableRowSorter<>(ob);
+        view.TPelanggan.setRowSorter(obj);
+        obj.setRowFilter(RowFilter.regexFilter(s));
+        java.sql.ResultSet dataPelanggan = model.searchPelangganData(s);
     }
 }
 
