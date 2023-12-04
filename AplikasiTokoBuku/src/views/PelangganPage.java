@@ -27,6 +27,7 @@ public class PelangganPage extends javax.swing.JFrame {
         
         initComponents();
         
+        generatedDataPelanggan();
         reset();
     }
     
@@ -36,6 +37,8 @@ public class PelangganPage extends javax.swing.JFrame {
         TFKode.setText("");
         TFNama.setText("");
         TAalamat.setText("");
+        RL.setSelected(false);
+        RP.setSelected(false);
     }
 
     /**
@@ -48,8 +51,6 @@ public class PelangganPage extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonBackHome = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        javax.swing.JTable TPelanggan = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -64,6 +65,8 @@ public class PelangganPage extends javax.swing.JFrame {
         BHapus = new javax.swing.JButton();
         BUbah = new javax.swing.JButton();
         BReset = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TPelanggan = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 500));
@@ -76,41 +79,6 @@ public class PelangganPage extends javax.swing.JFrame {
                 buttonBackHomeActionPerformed(evt);
             }
         });
-
-        TPelanggan.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Kode Pelanggan", "Nama Pelanggan", "Jenis Kelamin", "Alamat"
-            }
-        ));
-        String[] columns = {"Kode Pelanggan", "Nama Pelanggan", "Jenis Kelamin", "Alamat"};
-
-        DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
-
-        try {
-            while ( dataPelanggan.next() ) {
-                String id = dataPelanggan.getString("kd_pelanggan");
-                String nama = dataPelanggan.getString("nama_pelanggan");
-                String gender = dataPelanggan.getString("jenis_kelamin");
-                String alamat = dataPelanggan.getString("alamat");
-
-                String[] data = { id, nama, gender, alamat };
-
-                tableModel.addRow(data);
-            }
-        } catch ( java.sql.SQLException e ) {
-            System.out.println(e);
-        }
-
-        TPelanggan.setModel(tableModel);
-        TPelanggan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TPelangganMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(TPelanggan);
 
         jLabel1.setText("Kode Pelanggan");
 
@@ -160,6 +128,24 @@ public class PelangganPage extends javax.swing.JFrame {
             }
         });
 
+        TPelanggan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Kode Pelanggan", "Nama", "Jenis Kelamin", "Alamat"
+            }
+        ));
+        TPelanggan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TPelangganMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(TPelanggan);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -182,7 +168,7 @@ public class PelangganPage extends javax.swing.JFrame {
                                 .addComponent(RL)
                                 .addGap(18, 18, 18)
                                 .addComponent(RP)))
-                        .addGap(61, 61, 61))
+                        .addGap(53, 53, 53))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -199,50 +185,74 @@ public class PelangganPage extends javax.swing.JFrame {
                                         .addComponent(BTambah)
                                         .addGap(79, 79, 79)
                                         .addComponent(BHapus)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonBackHome, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(TFKode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(TFNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(RL)
-                    .addComponent(RP))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BTambah)
-                    .addComponent(BHapus))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BUbah)
-                    .addComponent(BReset))
-                .addGap(98, 98, 98))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(buttonBackHome, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(TFKode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(TFNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(RL)
+                            .addComponent(RP))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BTambah)
+                            .addComponent(BHapus))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BUbah)
+                            .addComponent(BReset))
+                        .addGap(98, 98, 98))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void generatedDataPelanggan(){
+    String[] columns = {"Kode Pelanggan", "Nama", "Jenis Kelamin", "Alamat"};
+
+    javax.swing.table.DefaultTableModel tableModel = new javax.swing.table.DefaultTableModel(columns, 0);
+
+    try {
+        while ( dataPelanggan.next() ) {
+            String[] data = {
+                dataPelanggan.getString("kd_pelanggan"),
+                dataPelanggan.getString("nama_pelanggan"),
+                dataPelanggan.getString("jenis_kelamin"),
+                dataPelanggan.getString("alamat")
+            };
+
+            tableModel.addRow(data);
+        }
+    } catch ( java.sql.SQLException e ) {
+        System.out.println(e);
+    }
+
+    TPelanggan.setModel(tableModel);
+    }
+    
     private void buttonBackHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackHomeActionPerformed
         // TODO add your handling code here:
 //        homePage.setVisible(true);
@@ -255,25 +265,6 @@ public class PelangganPage extends javax.swing.JFrame {
         BTambah.setEnabled(true);
         reset();
     }//GEN-LAST:event_BResetActionPerformed
-
-    private void TPelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TPelangganMouseClicked
-        // TODO add your handling code here:
-        int selectedRow = TPelanggan.getSelectedRow();
-        TableModel model = TPelanggan.getModel();
-        try{
-            TFKode.setText(model.getValueAt(selectedRow, 0).toString());
-            TFNama.setText(model.getValueAt(selectedRow, 1).toString());
-            TAalamat.setText(model.getValueAt(selectedRow, 3).toString());
-            String jenis_kelamin = model.getValueAt(selectedRow, 2).toString();
-                if(jenis_kelamin.equals("L")){
-                    RL.setSelected(true);
-                }else{
-                    RP.setSelected(true);
-                }
-        }catch(Exception e){
-            
-        }
-    }//GEN-LAST:event_TPelangganMouseClicked
 
     private void BTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTambahActionPerformed
         // TODO add your handling code here:
@@ -291,8 +282,21 @@ public class PelangganPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BUbahActionPerformed
 
-    
-    public javax.swing.JTable TPelanggan;
+    private void TPelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TPelangganMouseClicked
+        // TODO add your handling code here:
+        int i = TPelanggan.getSelectedRow();
+        TableModel model = TPelanggan.getModel();
+        TFKode.setText(model.getValueAt(i, 0).toString());
+        TFNama.setText(model.getValueAt(i, 1).toString());
+        TAalamat.setText(model.getValueAt(i, 3).toString());
+        String sex = model.getValueAt(i, 2).toString();
+            if(sex.equals("L")){
+                RL.setSelected(true);
+            }else{
+                RP.setSelected(true);
+            }
+    }//GEN-LAST:event_TPelangganMouseClicked
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BHapus;
@@ -304,12 +308,13 @@ public class PelangganPage extends javax.swing.JFrame {
     public javax.swing.JTextArea TAalamat;
     public javax.swing.JTextField TFKode;
     public javax.swing.JTextField TFNama;
+    private javax.swing.JTable TPelanggan;
     private javax.swing.JButton buttonBackHome;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }

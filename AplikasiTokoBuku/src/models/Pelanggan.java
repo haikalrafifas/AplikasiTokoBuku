@@ -8,7 +8,7 @@ import java.sql.ResultSet;
  */
 public class Pelanggan {
     public ResultSet getPelangganData() {
-        String query = "SELECT kd_pelanggan, nama_pelanggan, jenis_kelamin, alamat FROM pelanggan";
+        String query = "SELECT * FROM pelanggan";
         
         database.SQLConnection koneksi = new database.SQLConnection();
         
