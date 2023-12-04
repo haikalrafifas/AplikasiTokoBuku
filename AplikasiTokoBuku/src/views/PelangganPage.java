@@ -152,7 +152,11 @@ public class PelangganPage extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(TPelanggan);
 
-        TFSearch.setText("jTextField1");
+        TFSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFSearchActionPerformed(evt);
+            }
+        });
         TFSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TFSearchKeyPressed(evt);
@@ -305,7 +309,7 @@ public class PelangganPage extends javax.swing.JFrame {
         BTambah.setEnabled(false);
         BHapus.setEnabled(true);
         BUbah.setEnabled(true);
-        int i = TPelanggan.getSelectedRow()+1;
+        int i = TPelanggan.getSelectedRow();
         TableModel model = TPelanggan.getModel();
         TFKode.setText(model.getValueAt(i, 0).toString());
         TFNama.setText(model.getValueAt(i, 1).toString());
@@ -326,6 +330,10 @@ public class PelangganPage extends javax.swing.JFrame {
             pelangganController.handleSearchData(s);
         }
     }//GEN-LAST:event_TFSearchKeyPressed
+
+    private void TFSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TFSearchActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
