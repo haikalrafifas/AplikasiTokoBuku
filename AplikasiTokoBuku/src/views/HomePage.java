@@ -1,5 +1,9 @@
 package views;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+
 /**
  *
  * @author Kelompok urutan 2
@@ -151,8 +155,15 @@ public class HomePage extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        System.out.println("KLIK LAPORAN");
+        try {
+            homeController.handleLaporan();
+        } catch (JRException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBuku;
