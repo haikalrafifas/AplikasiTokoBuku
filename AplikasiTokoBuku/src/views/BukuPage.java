@@ -1,5 +1,11 @@
 package views;
 
+import javax.swing.table.DefaultTableModel;
+
+
+//jmvc.Navigator.view("home");
+//       this.setVisible(false);
+
 /**
  *
  * @author Samuel
@@ -9,6 +15,7 @@ public class BukuPage extends javax.swing.JFrame {
    private controllers.BukuController bukuController;
    private java.sql.ResultSet dataBuku;
     
+    private String kd_buku_hapus;
     /**
      * Creates new form buku
      */
@@ -26,6 +33,8 @@ public class BukuPage extends javax.swing.JFrame {
         
         this.setLocationRelativeTo(null);
        
+        BHapus.setEnabled(false);
+        BUbah.setEnabled(false);
         aktif();
         reset();
     }
@@ -36,6 +45,8 @@ public class BukuPage extends javax.swing.JFrame {
     }
     
     void reset(){
+        BHapus.setEnabled(false);
+        BUbah.setEnabled(false);
         CBJenis.setSelectedItem("PILIH");
         TFkode.setText("");
         TFTahun.setText("");
@@ -56,9 +67,10 @@ public class BukuPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         TFHargaPokok = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        BUbah = new javax.swing.JButton();
         TFHargaJual = new javax.swing.JTextField();
         BReset = new javax.swing.JButton();
         TFPenerbit = new javax.swing.JTextField();
@@ -75,21 +87,28 @@ public class BukuPage extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TData = new javax.swing.JTable();
         BTambah = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         TFStok = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        BHapus = new javax.swing.JButton();
+        TFSearch = new javax.swing.JTextField();
         BBack = new javax.swing.JButton();
 
+        jButton1.setText("jButton1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(800, 500));
 
         jLabel9.setText("Harga Jual");
 
         TFHargaPokok.setText("jTextField5");
 
-        jButton3.setText("Ubah");
+        BUbah.setText("Ubah");
+        BUbah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUbahActionPerformed(evt);
+            }
+        });
 
         TFHargaJual.setText("jTextField6");
 
@@ -124,7 +143,7 @@ public class BukuPage extends javax.swing.JFrame {
 
         jLabel7.setText("Stok");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -132,10 +151,10 @@ public class BukuPage extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "No", "Kode Buku", "Judul", "Jenis", "Penulis", "Tahun", "Stok", "Harga Pokok", "Harga Jual"
+                "Kode Buku", "Judul", "Jenis", "Penulis", "Penerbit", "Tahun", "Stok", "Harga Pokok", "Harga Jual"
             }
         ));
-        String[] columns = {"No", "Kode Buku", "Judul", "Jenis", "Penulis", "Tahun", "Stok", "Harga Pokok", "Harga Jual"};
+        String[] columns = {"Kode Buku", "Judul", "Jenis", "Penulis", "Penerbit", "Tahun", "Stok", "Harga Pokok", "Harga Jual"};
 
         javax.swing.table.DefaultTableModel tableModel = new javax.swing.table.DefaultTableModel(columns, 0);
 
@@ -159,8 +178,13 @@ public class BukuPage extends javax.swing.JFrame {
             System.out.println(e);
         }
 
-        jTable1.setModel(tableModel);
-        jScrollPane1.setViewportView(jTable1);
+        TData.setModel(tableModel);
+        TData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TDataMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TData);
 
         BTambah.setText("Tambah");
         BTambah.addActionListener(new java.awt.event.ActionListener() {
@@ -173,9 +197,20 @@ public class BukuPage extends javax.swing.JFrame {
 
         TFStok.setText("jTextField4");
 
-        jButton2.setText("Hapus");
+        BHapus.setText("Hapus");
+        BHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BHapusActionPerformed(evt);
+            }
+        });
 
-        BBack.setText("KEMBALI");
+        TFSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TFSearchKeyPressed(evt);
+            }
+        });
+
+        BBack.setText("Kembali");
         BBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BBackActionPerformed(evt);
@@ -186,60 +221,68 @@ public class BukuPage extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BBack)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton3)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(48, 48, 48)
-                                .addComponent(TFPenerbit))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(34, 34, 34)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TFkode)
-                                    .addComponent(TFJudul)
-                                    .addComponent(CBJenis, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(TFPenulis)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(59, 59, 59)
-                                .addComponent(TFTahun))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                                .addComponent(BReset))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(BReset)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(BTambah)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton2)))
-                                .addGap(12, 12, 12))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel9))
-                                .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TFHargaJual)
-                                    .addComponent(TFHargaPokok)
-                                    .addComponent(TFStok, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(21, 21, 21))
+                                .addComponent(BTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                                .addComponent(BHapus)))
+                        .addGap(12, 12, 12))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(BUbah)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addGap(48, 48, 48)
+                            .addComponent(TFPenerbit))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGap(34, 34, 34)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(TFkode)
+                                .addComponent(TFJudul)
+                                .addComponent(CBJenis, 0, 107, Short.MAX_VALUE)
+                                .addComponent(TFPenulis)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addGap(59, 59, 59)
+                            .addComponent(TFTahun))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel9))
+                            .addGap(22, 22, 22)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(TFHargaJual)
+                                .addComponent(TFHargaPokok)
+                                .addComponent(TFStok)))))
+                .addContainerGap(30, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(BBack)
+                .addGap(87, 87, 87)
+                .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(BBack)
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TFSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BBack, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -282,10 +325,10 @@ public class BukuPage extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BTambah)
-                    .addComponent(jButton2))
+                    .addComponent(BHapus))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
+                    .addComponent(BUbah)
                     .addComponent(BReset))
                 .addGap(17, 17, 17))
         );
@@ -301,6 +344,7 @@ public class BukuPage extends javax.swing.JFrame {
 
     private void BResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BResetActionPerformed
         // TODO add your handling code here:
+        BTambah.setEnabled(true);
         reset();
         aktif();
         CBJenis.requestFocus();
@@ -311,22 +355,75 @@ public class BukuPage extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_BBackActionPerformed
 
+    private void TDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TDataMouseClicked
+        // TODO add your handling code here:
+        BTambah.setEnabled(false);
+        BHapus.setEnabled(true);
+        BUbah.setEnabled(true);
+        DefaultTableModel model = (DefaultTableModel) TData.getModel();
+        int selectedRow = TData.getSelectedRow();
+        kd_buku_hapus = model.getValueAt(selectedRow, 0).toString();
+        try{
+            TFkode.setText(model.getValueAt(selectedRow, 0).toString());
+            TFTahun.setText(model.getValueAt(selectedRow, 5).toString());
+            TFStok.setText(model.getValueAt(selectedRow, 6).toString());
+            String comboSub =model.getValueAt(selectedRow, 2).toString();
+            for (int i = 0; i < CBJenis.getItemCount();i++){
+                if(CBJenis.getItemAt(i).toString().equalsIgnoreCase(comboSub)) {
+                   CBJenis.setSelectedIndex(i);
+                }
+            }
+            TFPenulis.setText(model.getValueAt(selectedRow, 3).toString());
+            TFPenerbit.setText(model.getValueAt(selectedRow, 4).toString());
+            TFJudul.setText(model.getValueAt(selectedRow, 1).toString());
+            TFHargaPokok.setText(model.getValueAt(selectedRow, 7).toString());
+            TFHargaJual.setText(model.getValueAt(selectedRow, 8).toString());
+        }catch(Exception e){
+            
+        }
+    }//GEN-LAST:event_TDataMouseClicked
+
+    private void BHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BHapusActionPerformed
+        // TODO add your handling code here:
+        bukuController.handleDeleteData(kd_buku_hapus);
+        
+    }//GEN-LAST:event_BHapusActionPerformed
+
+    private void BUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUbahActionPerformed
+        // TODO add your handling code here:
+        if ( bukuController.handleUpdateData(kd_buku_hapus) ) {
+            jmvc.Navigator.view("buku");
+        }
+    }//GEN-LAST:event_BUbahActionPerformed
+
+    private void TFSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TFSearchKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == evt.VK_ENTER){
+            String s = TFSearch.getText();
+            
+            bukuController.handleSearchData(s);
+        }
+    }//GEN-LAST:event_TFSearchKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BBack;
+    private javax.swing.JButton BHapus;
     private javax.swing.JButton BReset;
     private javax.swing.JButton BTambah;
+    private javax.swing.JButton BUbah;
     public javax.swing.JComboBox<String> CBJenis;
+    public javax.swing.JTable TData;
     public javax.swing.JTextField TFHargaJual;
     public javax.swing.JTextField TFHargaPokok;
     public javax.swing.JTextField TFJudul;
     public javax.swing.JTextField TFPenerbit;
     public javax.swing.JTextField TFPenulis;
+    private javax.swing.JTextField TFSearch;
     public javax.swing.JTextField TFStok;
     public javax.swing.JTextField TFTahun;
     public javax.swing.JTextField TFkode;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -337,6 +434,5 @@ public class BukuPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

@@ -200,6 +200,8 @@ public class HomePage extends javax.swing.JFrame {
 
     private void buttonTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTransaksiActionPerformed
         // TODO add your handling code here:
+                jmvc.Navigator.view("transaksi");
+        this.dispose();
     }//GEN-LAST:event_buttonTransaksiActionPerformed
 
     private void buttonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogoutActionPerformed

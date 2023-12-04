@@ -27,7 +27,6 @@ public class LoginController {
     String password = new String(passwordChars);
 
     String authenticationStatus = model.getUserAuthenticationStatus(username, password);
-
     if ("found".equals(authenticationStatus)) {
         jmvc.Navigator.view("home");
         view.setVisible(false);
