@@ -1,5 +1,8 @@
 package controllers;
 
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import models.Buku;
 import views.BukuPage;
 
@@ -86,5 +89,13 @@ public class BukuController {
         javax.swing.JOptionPane.showMessageDialog(view, message); 
         
         return isSuccessUpdate;
+    }
+    
+    public void handleSearchData(String s){
+        DefaultTableModel ob = (DefaultTableModel) view.TData.getModel();
+        TableRowSorter<DefaultTableModel> obj = new TableRowSorter<>(ob);
+        view.TData.setRowSorter(obj);
+        obj.setRowFilter(RowFilter.regexFilter(s));
+        java.sql.ResultSet dataBuku = model.searchBookData(s);
     }
 }

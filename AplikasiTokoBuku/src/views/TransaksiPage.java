@@ -197,6 +197,7 @@ public class TransaksiPage extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         btranssel = new javax.swing.JButton();
         bAddToCart = new javax.swing.JButton();
+        BBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -330,6 +331,13 @@ public class TransaksiPage extends javax.swing.JFrame {
             }
         });
 
+        BBack.setText("Kembali");
+        BBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -337,8 +345,10 @@ public class TransaksiPage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(BBack)
+                        .addComponent(jLabel2)))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -425,8 +435,10 @@ public class TransaksiPage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addComponent(jLabel1)
-                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(BBack))
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
@@ -557,7 +569,13 @@ public class TransaksiPage extends javax.swing.JFrame {
         transaksiController.handleFinishTransaction();
     }//GEN-LAST:event_btransselActionPerformed
 
+    private void BBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBackActionPerformed
+        jmvc.Navigator.view("home");
+        this.dispose();
+    }//GEN-LAST:event_BBackActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BBack;
     private javax.swing.JButton bAddToCart;
     private javax.swing.JButton bbat;
     public javax.swing.JButton bsel;

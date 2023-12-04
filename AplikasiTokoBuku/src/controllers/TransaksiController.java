@@ -27,7 +27,7 @@ public class TransaksiController {
     }
     
     public java.sql.ResultSet getBukuData() {
-        return modelBuku.getAvailableBookData();
+        return modelBuku.getBookData();
     }
     
     public void handleAddCartData() {

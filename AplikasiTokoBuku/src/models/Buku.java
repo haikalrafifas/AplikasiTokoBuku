@@ -31,16 +31,6 @@ public class Buku {
         
     }
     
-    public ResultSet getAvailableBookData() {
-        
-        String query = "SELECT * FROM buku WHERE stok > 0";
-        
-        database.SQLConnection koneksi = new database.SQLConnection();
-        
-        return koneksi.doQuery(query);
-        
-    }
-    
     public boolean deleteBookData(String kd_buku){
         String query = "DELETE FROM buku WHERE kd_buku = ?";
         
@@ -65,5 +55,15 @@ public class Buku {
         
         return isSuccessUpdate;
         
+    }
+    
+    public ResultSet searchBookData(String s) {
+        String query = "SELECT * FROM buku WHERE kd_buku LIKE %?% OR judul LIKE %?% OR penerbit LIKE %?% OR penulis LIKE %?% OR tahun %?% OR jenis LIKE %?%";
+        
+        database.SQLConnection koneksi = new database.SQLConnection();
+        
+        ResultSet hasilPencarian = koneksi.doPreparedQuery(query, s,s,s,s,s,s);
+        
+        return hasilPencarian;
     }
 }
