@@ -33,6 +33,8 @@ public class BukuPage extends javax.swing.JFrame {
         
         this.setLocationRelativeTo(null);
        
+        BHapus.setEnabled(false);
+        BUbah.setEnabled(false);
         aktif();
         reset();
     }
@@ -43,6 +45,8 @@ public class BukuPage extends javax.swing.JFrame {
     }
     
     void reset(){
+        BHapus.setEnabled(false);
+        BUbah.setEnabled(false);
         CBJenis.setSelectedItem("PILIH");
         TFkode.setText("");
         TFTahun.setText("");
@@ -87,6 +91,7 @@ public class BukuPage extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         TFStok = new javax.swing.JTextField();
         BHapus = new javax.swing.JButton();
+        TFSearch = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -195,6 +200,12 @@ public class BukuPage extends javax.swing.JFrame {
             }
         });
 
+        TFSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TFSearchKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -247,11 +258,17 @@ public class BukuPage extends javax.swing.JFrame {
                                 .addComponent(TFHargaPokok)
                                 .addComponent(TFStok)))))
                 .addContainerGap(30, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(159, 159, 159)
+                .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -312,6 +329,7 @@ public class BukuPage extends javax.swing.JFrame {
 
     private void BResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BResetActionPerformed
         // TODO add your handling code here:
+        BTambah.setEnabled(true);
         reset();
         aktif();
         CBJenis.requestFocus();
@@ -324,6 +342,9 @@ public class BukuPage extends javax.swing.JFrame {
 
     private void TDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TDataMouseClicked
         // TODO add your handling code here:
+        BTambah.setEnabled(false);
+        BHapus.setEnabled(true);
+        BUbah.setEnabled(true);
         DefaultTableModel model = (DefaultTableModel) TData.getModel();
         int selectedRow = TData.getSelectedRow();
         kd_buku_hapus = model.getValueAt(selectedRow, 0).toString();
@@ -360,6 +381,15 @@ public class BukuPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BUbahActionPerformed
 
+    private void TFSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TFSearchKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == evt.VK_ENTER){
+            String s = TFSearch.getText();
+            
+            bukuController.handleSearchData(s);
+        }
+    }//GEN-LAST:event_TFSearchKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BHapus;
@@ -367,12 +397,13 @@ public class BukuPage extends javax.swing.JFrame {
     private javax.swing.JButton BTambah;
     private javax.swing.JButton BUbah;
     public javax.swing.JComboBox<String> CBJenis;
-    private javax.swing.JTable TData;
+    public javax.swing.JTable TData;
     public javax.swing.JTextField TFHargaJual;
     public javax.swing.JTextField TFHargaPokok;
     public javax.swing.JTextField TFJudul;
     public javax.swing.JTextField TFPenerbit;
     public javax.swing.JTextField TFPenulis;
+    private javax.swing.JTextField TFSearch;
     public javax.swing.JTextField TFStok;
     public javax.swing.JTextField TFTahun;
     public javax.swing.JTextField TFkode;

@@ -15,7 +15,8 @@ Cara untuk berkontribusi untuk aplikasi ini:
 1. Hubungi repository owner/kontributor aktif agar diberi akses tulis
 2. Buat branch tersendiri dengan nama selain main, development, dan feat/*
 3. Ubah konfigurasi kredensial database di `src/database/Config.java` sesuai dengan database yang ada. Disarankan menggunakan `MySQL` yang umum nya satu bundle dengan `XAMPP`. Pastikan server database nya sudah berjalan.
-4. Lakukan perubahan, namun disarankan untuk menggunakan IDE `Apache Netbeans` untuk mengubah dan testing kode sumber
+4. Install plugin `JasperReport`.
+5. Lakukan perubahan, namun disarankan untuk menggunakan IDE `Apache Netbeans` untuk mengubah dan testing kode sumber
 
 Aplikasi ini menerapkan framework MVC, sehingga penataan file menjadi lebih sesuai peruntukannya. Berikut adalah penjelasan masing-masing direktori di dalam `src/`:
 

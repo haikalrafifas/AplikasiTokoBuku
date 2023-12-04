@@ -56,4 +56,14 @@ public class Buku {
         return isSuccessUpdate;
         
     }
+    
+    public ResultSet searchBookData(String s) {
+        String query = "SELECT * FROM buku WHERE kd_buku LIKE %?% OR judul LIKE %?% OR penerbit LIKE %?% OR penulis LIKE %?% OR tahun %?% OR jenis LIKE %?%";
+        
+        database.SQLConnection koneksi = new database.SQLConnection();
+        
+        ResultSet hasilPencarian = koneksi.doPreparedQuery(query, s,s,s,s,s,s);
+        
+        return hasilPencarian;
+    }
 }
