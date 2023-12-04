@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Nov 2023 pada 08.19
+-- Waktu pembuatan: 04 Des 2023 pada 06.27
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -20,14 +20,13 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_javabuku`
 --
-
+create database db_javabuku;
+use db_javabuku;
 -- --------------------------------------------------------
 
 --
 -- Struktur dari tabel `buku`
 --
-CREATE database db_javabuku;
-use db_javabuku;
 
 CREATE TABLE `buku` (
   `kd_buku` varchar(6) NOT NULL,
@@ -77,6 +76,45 @@ INSERT INTO `distributor` (`kd_distributor`, `nama_distributor`, `alamat`, `tele
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `laporan`
+--
+
+CREATE TABLE `laporan` (
+  `kd_transaksi` varchar(8) NOT NULL,
+  `kd_pelanggan` varchar(6) NOT NULL,
+  `kd_buku` varchar(6) NOT NULL,
+  `jumlah` int(4) NOT NULL,
+  `total` int(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `laporan`
+--
+
+INSERT INTO `laporan` (`kd_transaksi`, `kd_pelanggan`, `kd_buku`, `jumlah`, `total`) VALUES
+('TR0001', 'PL001', 'K0004', 2, 110000),
+('TR0002', 'PL002', 'K0005', 1, 90000);
+
+--
+-- Trigger `laporan`
+--
+DELIMITER $$
+CREATE TRIGGER `checkout` AFTER INSERT ON `laporan` FOR EACH ROW BEGIN
+    DECLARE kd_transaksi_temp VARCHAR(8);
+    
+    SET kd_transaksi_temp = NEW.kd_transaksi;
+
+    DELETE FROM penjualan WHERE kd_transaksi = kd_transaksi_temp;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `login`
+--
+
 CREATE TABLE `login` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
@@ -89,8 +127,11 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`id`, `username`, `password`, `nama`) VALUES
-(1, 'admin1', '123', 'Haikal');
+(1, 'admin1', 'admin1', 'Haikal');
 
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `pelanggan`
 --
 
@@ -104,7 +145,6 @@ CREATE TABLE `pelanggan` (
 --
 -- Dumping data untuk tabel `pelanggan`
 --
-
 
 INSERT INTO `pelanggan` (`kd_pelanggan`, `nama_pelanggan`, `jenis_kelamin`, `alamat`) VALUES
 ('PL001', 'Samuel Sihombing', 'L', 'Jalan Dukuh Depok'),
@@ -138,14 +178,53 @@ INSERT INTO `penjualan` (`kd_pretransaksi`, `kd_transaksi`, `kd_pelanggan`, `kd_
 ('PS0004', 'TR0002', 'PL002', 'K0005', 1, 90000);
 
 --
+-- Trigger `penjualan`
+--
+DELIMITER $$
+CREATE TRIGGER `update_stok` AFTER INSERT ON `penjualan` FOR EACH ROW BEGIN
+    DECLARE id_buku_temp VARCHAR(6);
+DECLARE jumlah_beli_temp INT;
+   
+SELECT kd_buku, jumlah INTO id_buku_temp, jumlah_beli_temp
+FROM penjualan
+WHERE kd_pretransaksi = NEW.kd_pretransaksi;
+    
+UPDATE buku
+SET stok = stok - jumlah_beli_temp
+WHERE kd_buku = id_buku_temp;
+
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in struktur untuk tampilan `view_laporan`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `view_laporan` (
+`kd_transaksi` varchar(8)
+,`nama_pelanggan` varchar(50)
+,`judul` varchar(50)
+,`jumlah` int(4)
+,`total` int(8)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `view_laporan`
+--
+DROP TABLE IF EXISTS `view_laporan`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_laporan`  AS SELECT `l`.`kd_transaksi` AS `kd_transaksi`, `p`.`nama_pelanggan` AS `nama_pelanggan`, `b`.`judul` AS `judul`, `l`.`jumlah` AS `jumlah`, `l`.`total` AS `total` FROM ((`laporan` `l` join `pelanggan` `p` on(`l`.`kd_pelanggan` = `p`.`kd_pelanggan`)) join `buku` `b` on(`l`.`kd_buku` = `b`.`kd_buku`)) ;
+
+--
 -- Indexes for dumped tables
 --
 
-
--- Indeks untuk tabel `login`
 --
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`id`);
 -- Indeks untuk tabel `buku`
 --
 ALTER TABLE `buku`
@@ -158,6 +237,20 @@ ALTER TABLE `distributor`
   ADD PRIMARY KEY (`kd_distributor`);
 
 --
+-- Indeks untuk tabel `laporan`
+--
+ALTER TABLE `laporan`
+  ADD PRIMARY KEY (`kd_transaksi`),
+  ADD KEY `kd_pelanggan` (`kd_pelanggan`),
+  ADD KEY `kd_buku` (`kd_buku`);
+
+--
+-- Indeks untuk tabel `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `pelanggan`
 --
 ALTER TABLE `pelanggan`
@@ -167,8 +260,12 @@ ALTER TABLE `pelanggan`
 -- Indeks untuk tabel `penjualan`
 --
 ALTER TABLE `penjualan`
-  ADD PRIMARY KEY (`kd_pretransaksi`);
+  ADD PRIMARY KEY (`kd_pretransaksi`),
+  ADD KEY `kd_pelanggan` (`kd_pelanggan`),
+  ADD KEY `kd_transaksi` (`kd_transaksi`),
+  ADD KEY `kd_buku` (`kd_buku`);
 
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -177,6 +274,24 @@ ALTER TABLE `penjualan`
 --
 ALTER TABLE `login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `laporan`
+--
+ALTER TABLE `laporan`
+  ADD CONSTRAINT `laporan_ibfk_1` FOREIGN KEY (`kd_pelanggan`) REFERENCES `pelanggan` (`kd_pelanggan`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `laporan_ibfk_2` FOREIGN KEY (`kd_buku`) REFERENCES `buku` (`kd_buku`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Ketidakleluasaan untuk tabel `penjualan`
+--
+ALTER TABLE `penjualan`
+  ADD CONSTRAINT `penjualan_ibfk_1` FOREIGN KEY (`kd_buku`) REFERENCES `buku` (`kd_buku`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `penjualan_ibfk_2` FOREIGN KEY (`kd_pelanggan`) REFERENCES `pelanggan` (`kd_pelanggan`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
