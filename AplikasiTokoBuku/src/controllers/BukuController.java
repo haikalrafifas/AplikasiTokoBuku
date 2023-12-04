@@ -8,6 +8,8 @@ import views.BukuPage;
  * @author Samuel
  */
 public class BukuController {
+    
+    
     private Buku model;
     private BukuPage view;
     

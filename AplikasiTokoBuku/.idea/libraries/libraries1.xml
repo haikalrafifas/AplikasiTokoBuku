@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="libraries1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/libraries/jframe-mvc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/libraries/mysql-jdbc-driver.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

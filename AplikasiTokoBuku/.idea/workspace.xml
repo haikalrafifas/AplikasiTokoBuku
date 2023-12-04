@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9c8240a9-958b-430b-ace5-cb4364faebdc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/nbproject/build-impl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/build-impl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/libraries/jframe-mvc.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/libraries/jframe-mvc.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/report/report1.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/report/report1.jrxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HomePage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": -1
+}]]></component>
+  <component name="ProjectId" id="2Z4z5UNKupPgV7lHddfdeePlW4e" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "muh",
+    "last_opened_file_path": "D:/opal/Projek code/test/AplikasiTokoBuku"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9c8240a9-958b-430b-ace5-cb4364faebdc" name="Changes" comment="" />
+      <created>1701695956458</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701695956458</updated>
+    </task>
+    <servers />
+  </component>
+</project>

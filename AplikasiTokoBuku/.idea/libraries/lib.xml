@@ -1,0 +1,41 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/lib/xalan.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/batik-parser.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/batik-svggen.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/commons-collections-3.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/jframe-mvc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/batik-svg-dom.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/xml-apis.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/commons-beanutils-1.8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/jcommon-1.0.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/batik-bridge.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/batik-util.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/commons-digester-2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/batik-gvt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/jaxen-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/jfreechart-1.0.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/batik-script.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/png-encoder-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/barbecue-1.5-beta1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/org-jdesktop-layout.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/castor-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/commons-logging-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/jpa.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/batik-dom.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/batik-xml.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/jasperreports-5.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/mysql-jdbc-driver.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/batik-css.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/batik-ext.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/batik-awt-util.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/batik-anim.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/groovy-all-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/iText-2.1.7.js2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/xml-apis-ext.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
