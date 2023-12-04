@@ -16,7 +16,7 @@ public class SQLConnection {
     public SQLConnection() {
         Config c = new Config();
         try {
-            koneksi = DriverManager.getConnection("jdbc:"+c.DB_DRIVER_NAME+"://"+c.DB_HOST+":"+c.DB_PORT+"/"+c.DB_NAME, c.DB_USER, c.DB_PASS);
+            koneksi = DriverManager.getConnection("jdbc:"+c.DB_DRIVER_NAME+"://"+c.DB_HOST+":"+c.DB_PORT+"/"+c.DB_NAME, c.DB_USER, "");
         } catch ( SQLException e ) {
             System.out.println(e);
         }
