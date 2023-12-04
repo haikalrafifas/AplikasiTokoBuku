@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Des 2023 pada 06.27
--- Versi server: 10.4.28-MariaDB
--- Versi PHP: 8.2.4
+-- Generation Time: Dec 04, 2023 at 09:29 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,12 +20,11 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_javabuku`
 --
-create database db_javabuku;
-use db_javabuku;
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `buku`
+-- Table structure for table `buku`
 --
 
 CREATE TABLE `buku` (
@@ -41,20 +40,20 @@ CREATE TABLE `buku` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `buku`
+-- Dumping data for table `buku`
 --
 
 INSERT INTO `buku` (`kd_buku`, `judul`, `jenis`, `penulis`, `penerbit`, `tahun`, `stok`, `harga_pokok`, `harga_jual`) VALUES
-('K0001', 'Dragon Ball', 'Komik', 'Akira Toriyama', 'Gramedia', '2006', 14, 40000, 60000),
-('K0002', 'Naruto Shippuden', 'Komik', 'Masashi Kishimoto', 'Gunung Agung', '2000', 30, 50000, 70000),
-('K0003', 'One Piece', 'Komik', 'Echiro Oda', 'Gramedia', '2001', 35, 45000, 60000),
-('K0004', 'Spy X Family', 'Komik', 'Endo Tatsuya', 'T. Harapan', '2018', 26, 45000, 55000),
+('K0001', 'Dragon Ball', 'Komik', 'Akira Toriyama', 'Gramedia', '2006', 4, 40000, 60000),
+('K0002', 'Naruto Shippuden', 'Komik', 'Masashi Kishimoto', 'Gunung Agung', '2000', 13, 50000, 70000),
+('K0003', 'One Piece', 'Komik', 'Echiro Oda', 'Gramedia', '2001', 20, 45000, 60000),
+('K0004', 'Spy X Family', 'Komik', 'Endo Tatsuya', 'T. Harapan', '2018', 16, 45000, 55000),
 ('K0005', 'Jojo’s Bizarre Adventure', 'Komik', 'Hirohiko Araki', 'Flyer', '1999', 23, 70000, 90000);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `distributor`
+-- Table structure for table `distributor`
 --
 
 CREATE TABLE `distributor` (
@@ -65,7 +64,7 @@ CREATE TABLE `distributor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `distributor`
+-- Dumping data for table `distributor`
 --
 
 INSERT INTO `distributor` (`kd_distributor`, `nama_distributor`, `alamat`, `telepon`) VALUES
@@ -76,7 +75,7 @@ INSERT INTO `distributor` (`kd_distributor`, `nama_distributor`, `alamat`, `tele
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `laporan`
+-- Table structure for table `laporan`
 --
 
 CREATE TABLE `laporan` (
@@ -88,15 +87,7 @@ CREATE TABLE `laporan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `laporan`
---
-
-INSERT INTO `laporan` (`kd_transaksi`, `kd_pelanggan`, `kd_buku`, `jumlah`, `total`) VALUES
-('TR0001', 'PL001', 'K0004', 2, 110000),
-('TR0002', 'PL002', 'K0005', 1, 90000);
-
---
--- Trigger `laporan`
+-- Triggers `laporan`
 --
 DELIMITER $$
 CREATE TRIGGER `checkout` AFTER INSERT ON `laporan` FOR EACH ROW BEGIN
@@ -112,16 +103,18 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `login`
+-- Table structure for table `login`
 --
 
 CREATE TABLE `login` (
+  `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(50) NOT NULL,
+  `nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
+--
+-- Dumping data for table `login`
 --
 
 INSERT INTO `login` (`id`, `username`, `password`, `nama`) VALUES
@@ -130,7 +123,7 @@ INSERT INTO `login` (`id`, `username`, `password`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pelanggan`
+-- Table structure for table `pelanggan`
 --
 
 CREATE TABLE `pelanggan` (
@@ -141,7 +134,7 @@ CREATE TABLE `pelanggan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `pelanggan`
+-- Dumping data for table `pelanggan`
 --
 
 INSERT INTO `pelanggan` (`kd_pelanggan`, `nama_pelanggan`, `jenis_kelamin`, `alamat`) VALUES
@@ -153,7 +146,7 @@ INSERT INTO `pelanggan` (`kd_pelanggan`, `nama_pelanggan`, `jenis_kelamin`, `ala
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penjualan`
+-- Table structure for table `penjualan`
 --
 
 CREATE TABLE `penjualan` (
@@ -166,17 +159,7 @@ CREATE TABLE `penjualan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `penjualan`
---
-
-INSERT INTO `penjualan` (`kd_pretransaksi`, `kd_transaksi`, `kd_pelanggan`, `kd_buku`, `jumlah`, `sub_total`) VALUES
-('PS0001', 'TR0001', 'PL001', 'K0004', 2, 110000),
-('PS0002', 'TR0001', 'PL001', 'K0004', 4, 220000),
-('PS0003', 'TR0001', 'PL001', 'K0003', 2, 120000),
-('PS0004', 'TR0002', 'PL002', 'K0005', 1, 90000);
-
---
--- Trigger `penjualan`
+-- Triggers `penjualan`
 --
 DELIMITER $$
 CREATE TRIGGER `update_stok` AFTER INSERT ON `penjualan` FOR EACH ROW BEGIN
@@ -194,12 +177,25 @@ WHERE kd_buku = id_buku_temp;
 END
 $$
 DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `update_stok_add` BEFORE DELETE ON `penjualan` FOR EACH ROW BEGIN
+	DECLARE id_buku_temp VARCHAR(6);
+	DECLARE jumlah_beli_temp INT;
+    
+    SELECT kd_buku, jumlah INTO id_buku_temp, jumlah_beli_temp
+    FROM penjualan
+    WHERE kd_pretransaksi = OLD.kd_pretransaksi;
+    
+	UPDATE buku SET stok = stok + jumlah_beli_temp WHERE kd_buku = id_buku_temp;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
 --
--- Stand-in struktur untuk tampilan `view_laporan`
--- (Lihat di bawah untuk tampilan aktual)
+-- Stand-in structure for view `view_laporan`
+-- (See below for the actual view)
 --
 CREATE TABLE `view_laporan` (
 `kd_transaksi` varchar(8)
@@ -212,30 +208,30 @@ CREATE TABLE `view_laporan` (
 -- --------------------------------------------------------
 
 --
--- Struktur untuk view `view_laporan`
+-- Structure for view `view_laporan`
 --
 DROP TABLE IF EXISTS `view_laporan`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_laporan`  AS SELECT `l`.`kd_transaksi` AS `kd_transaksi`, `p`.`nama_pelanggan` AS `nama_pelanggan`, `b`.`judul` AS `judul`, `l`.`jumlah` AS `jumlah`, `l`.`total` AS `total` FROM ((`laporan` `l` join `pelanggan` `p` on(`l`.`kd_pelanggan` = `p`.`kd_pelanggan`)) join `buku` `b` on(`l`.`kd_buku` = `b`.`kd_buku`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_laporan`  AS SELECT `l`.`kd_transaksi` AS `kd_transaksi`, `p`.`nama_pelanggan` AS `nama_pelanggan`, `b`.`judul` AS `judul`, `l`.`jumlah` AS `jumlah`, `l`.`total` AS `total` FROM ((`laporan` `l` join `pelanggan` `p` on(`l`.`kd_pelanggan` = `p`.`kd_pelanggan`)) join `buku` `b` on(`l`.`kd_buku` = `b`.`kd_buku`))  ;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `buku`
+-- Indexes for table `buku`
 --
 ALTER TABLE `buku`
   ADD PRIMARY KEY (`kd_buku`);
 
 --
--- Indeks untuk tabel `distributor`
+-- Indexes for table `distributor`
 --
 ALTER TABLE `distributor`
   ADD PRIMARY KEY (`kd_distributor`);
 
 --
--- Indeks untuk tabel `laporan`
+-- Indexes for table `laporan`
 --
 ALTER TABLE `laporan`
   ADD PRIMARY KEY (`kd_transaksi`),
@@ -243,19 +239,19 @@ ALTER TABLE `laporan`
   ADD KEY `kd_buku` (`kd_buku`);
 
 --
--- Indeks untuk tabel `login`
+-- Indexes for table `login`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `pelanggan`
+-- Indexes for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
   ADD PRIMARY KEY (`kd_pelanggan`);
 
 --
--- Indeks untuk tabel `penjualan`
+-- Indexes for table `penjualan`
 --
 ALTER TABLE `penjualan`
   ADD PRIMARY KEY (`kd_pretransaksi`),
@@ -264,28 +260,28 @@ ALTER TABLE `penjualan`
   ADD KEY `kd_buku` (`kd_buku`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `login`
+-- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `laporan`
+-- Constraints for table `laporan`
 --
 ALTER TABLE `laporan`
   ADD CONSTRAINT `laporan_ibfk_1` FOREIGN KEY (`kd_pelanggan`) REFERENCES `pelanggan` (`kd_pelanggan`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `laporan_ibfk_2` FOREIGN KEY (`kd_buku`) REFERENCES `buku` (`kd_buku`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Ketidakleluasaan untuk tabel `penjualan`
+-- Constraints for table `penjualan`
 --
 ALTER TABLE `penjualan`
   ADD CONSTRAINT `penjualan_ibfk_1` FOREIGN KEY (`kd_buku`) REFERENCES `buku` (`kd_buku`) ON DELETE NO ACTION ON UPDATE NO ACTION,
