@@ -2,6 +2,7 @@ package views;
 
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -25,6 +26,16 @@ public class PelangganPage extends javax.swing.JFrame {
 //        dataPelanggan = koneksi.doQuery(query);
         
         initComponents();
+        
+        reset();
+    }
+    
+    void reset(){
+        BHapus.setEnabled(false);
+        BUbah.setEnabled(false);
+        TFKode.setText("");
+        TFNama.setText("");
+        TAalamat.setText("");
     }
 
     /**
@@ -38,7 +49,21 @@ public class PelangganPage extends javax.swing.JFrame {
 
         buttonBackHome = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        javax.swing.JTable tablePelanggan = new javax.swing.JTable();
+        javax.swing.JTable TPelanggan = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        TFKode = new javax.swing.JTextField();
+        TFNama = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TAalamat = new javax.swing.JTextArea();
+        RL = new javax.swing.JRadioButton();
+        RP = new javax.swing.JRadioButton();
+        BTambah = new javax.swing.JButton();
+        BHapus = new javax.swing.JButton();
+        BUbah = new javax.swing.JButton();
+        BReset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 500));
@@ -52,25 +77,26 @@ public class PelangganPage extends javax.swing.JFrame {
             }
         });
 
-        tablePelanggan.setModel(new javax.swing.table.DefaultTableModel(
+        TPelanggan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
-            new String[] {
-                "Kode Pelanggan", "Nama", "Gender"
-            })
-        );
-        String[] columns = {"Kode Pelanggan", "Nama", "Gender"};
+            new String [] {
+                "Kode Pelanggan", "Nama Pelanggan", "Jenis Kelamin", "Alamat"
+            }
+        ));
+        String[] columns = {"Kode Pelanggan", "Nama Pelanggan", "Jenis Kelamin", "Alamat"};
 
         DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
 
         try {
             while ( dataPelanggan.next() ) {
-                String[] data = {
-                    dataPelanggan.getString("kd_pelanggan"),
-                    dataPelanggan.getString("nama_pelanggan"),
-                    dataPelanggan.getString("jenis_kelamin")
-                };
+                String id = dataPelanggan.getString("kd_pelanggan");
+                String nama = dataPelanggan.getString("nama_pelanggan");
+                String gender = dataPelanggan.getString("jenis_kelamin");
+                String alamat = dataPelanggan.getString("alamat");
+
+                String[] data = { id, nama, gender, alamat };
 
                 tableModel.addRow(data);
             }
@@ -78,29 +104,139 @@ public class PelangganPage extends javax.swing.JFrame {
             System.out.println(e);
         }
 
-        tablePelanggan.setModel(tableModel);
-        jScrollPane1.setViewportView(tablePelanggan);
+        TPelanggan.setModel(tableModel);
+        TPelanggan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TPelangganMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TPelanggan);
+
+        jLabel1.setText("Kode Pelanggan");
+
+        jLabel2.setText("Nama");
+
+        jLabel3.setText("Jenis Kelamin");
+
+        jLabel4.setText("Alamat");
+
+        TFKode.setText("jTextField1");
+
+        TFNama.setText("jTextField2");
+
+        TAalamat.setColumns(20);
+        TAalamat.setRows(5);
+        jScrollPane2.setViewportView(TAalamat);
+
+        RL.setText("Laki-Laki");
+
+        RP.setText("Perempuan");
+
+        BTambah.setText("Tambah");
+        BTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTambahActionPerformed(evt);
+            }
+        });
+
+        BHapus.setText("Hapus");
+        BHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BHapusActionPerformed(evt);
+            }
+        });
+
+        BUbah.setText("Ubah");
+        BUbah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUbahActionPerformed(evt);
+            }
+        });
+
+        BReset.setText("Reset");
+        BReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BResetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(buttonBackHome, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(464, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(64, 64, 64)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TFNama, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TFKode, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(RL)
+                                .addGap(18, 18, 18)
+                                .addComponent(RP)))
+                        .addGap(61, 61, 61))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(buttonBackHome, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(273, 273, 273)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(BUbah)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(BReset))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(BTambah)
+                                        .addGap(79, 79, 79)
+                                        .addComponent(BHapus)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonBackHome, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(433, 433, 433))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(TFKode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(TFNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(RL)
+                    .addComponent(RP))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BTambah)
+                    .addComponent(BHapus))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BUbah)
+                    .addComponent(BReset))
+                .addGap(98, 98, 98))
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -114,9 +250,66 @@ public class PelangganPage extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_buttonBackHomeActionPerformed
 
+    private void BResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BResetActionPerformed
+        // TODO add your handling code here:
+        BTambah.setEnabled(true);
+        reset();
+    }//GEN-LAST:event_BResetActionPerformed
 
+    private void TPelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TPelangganMouseClicked
+        // TODO add your handling code here:
+        int selectedRow = TPelanggan.getSelectedRow();
+        TableModel model = TPelanggan.getModel();
+        try{
+            TFKode.setText(model.getValueAt(selectedRow, 0).toString());
+            TFNama.setText(model.getValueAt(selectedRow, 1).toString());
+            TAalamat.setText(model.getValueAt(selectedRow, 3).toString());
+            String jenis_kelamin = model.getValueAt(selectedRow, 2).toString();
+                if(jenis_kelamin.equals("L")){
+                    RL.setSelected(true);
+                }else{
+                    RP.setSelected(true);
+                }
+        }catch(Exception e){
+            
+        }
+    }//GEN-LAST:event_TPelangganMouseClicked
+
+    private void BTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTambahActionPerformed
+        // TODO add your handling code here:
+        pelangganController.handleAddData();
+        jmvc.Navigator.view("pelanggan");
+        this.setVisible(false);
+    }//GEN-LAST:event_BTambahActionPerformed
+
+    private void BHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BHapusActionPerformed
+        // TODO add your handling code here:
+        pelangganController.handleDeleteData(TFKode.getText());
+    }//GEN-LAST:event_BHapusActionPerformed
+
+    private void BUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUbahActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BUbahActionPerformed
+
+    
+    public javax.swing.JTable TPelanggan;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BHapus;
+    private javax.swing.JButton BReset;
+    private javax.swing.JButton BTambah;
+    private javax.swing.JButton BUbah;
+    public javax.swing.JRadioButton RL;
+    public javax.swing.JRadioButton RP;
+    public javax.swing.JTextArea TAalamat;
+    public javax.swing.JTextField TFKode;
+    public javax.swing.JTextField TFNama;
     private javax.swing.JButton buttonBackHome;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
