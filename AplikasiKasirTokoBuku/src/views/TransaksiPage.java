@@ -26,19 +26,19 @@ public class TransaksiPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        formtransaksi = new javax.swing.JLabel();
+        datapel = new javax.swing.JLabel();
+        databuk = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabdatpel = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabdatbuk = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        kpesan = new javax.swing.JLabel();
+        ktrans = new javax.swing.JLabel();
+        kpel = new javax.swing.JLabel();
+        kbuk = new javax.swing.JLabel();
+        jum = new javax.swing.JLabel();
+        har = new javax.swing.JLabel();
         tkpes = new javax.swing.JTextField();
         thar = new javax.swing.JTextField();
         tkpel = new javax.swing.JTextField();
@@ -47,27 +47,27 @@ public class TransaksiPage extends javax.swing.JFrame {
         tkbuk = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabker = new javax.swing.JTable();
-        jLabel10 = new javax.swing.JLabel();
+        keranjang = new javax.swing.JLabel();
         bsel = new javax.swing.JButton();
         bbat = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
+        kem = new javax.swing.JLabel();
         ttharga = new javax.swing.JTextField();
         tbay = new javax.swing.JTextField();
         tnpem = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
+        tothar = new javax.swing.JLabel();
         tkem = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
+        npem = new javax.swing.JLabel();
         btranssel = new javax.swing.JButton();
-        jLabel15 = new javax.swing.JLabel();
+        bay = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("FORM TRANSAKSI");
+        formtransaksi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        formtransaksi.setText("FORM TRANSAKSI");
 
-        jLabel2.setText("Data Pelanggan");
+        datapel.setText("Data Pelanggan");
 
-        jLabel3.setText("Data Buku");
+        databuk.setText("Data Buku");
 
         tabdatpel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,17 +95,17 @@ public class TransaksiPage extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tabdatbuk);
 
-        jLabel4.setText("Kode Pesan");
+        kpesan.setText("Kode Pesan");
 
-        jLabel5.setText("Kode Transaksi");
+        ktrans.setText("Kode Transaksi");
 
-        jLabel6.setText("Kode Pelanggan");
+        kpel.setText("Kode Pelanggan");
 
-        jLabel7.setText("Kode Buku");
+        kbuk.setText("Kode Buku");
 
-        jLabel8.setText("Jumlah");
+        jum.setText("Jumlah");
 
-        jLabel9.setText("Harga");
+        har.setText("Harga");
 
         tkpes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,13 +132,13 @@ public class TransaksiPage extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tabker);
 
-        jLabel10.setText("Keranjang");
+        keranjang.setText("Keranjang");
 
         bsel.setText("Selesai");
 
         bbat.setText("Batal");
 
-        jLabel12.setText("Kembalian");
+        kem.setText("Kembalian");
 
         tbay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,7 +146,7 @@ public class TransaksiPage extends javax.swing.JFrame {
             }
         });
 
-        jLabel13.setText("Total Harga");
+        tothar.setText("Total Harga");
 
         tkem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,11 +154,11 @@ public class TransaksiPage extends javax.swing.JFrame {
             }
         });
 
-        jLabel14.setText("Nama Pembeli");
+        npem.setText("Nama Pembeli");
 
         btranssel.setText("Transaksi Selesai");
 
-        jLabel15.setText("Bayar");
+        bay.setText("Bayar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,11 +168,11 @@ public class TransaksiPage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(121, 121, 121)
-                        .addComponent(jLabel6)
+                        .addComponent(kpel)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(182, 182, 182)
-                                .addComponent(jLabel7))
+                                .addComponent(kbuk))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(173, 173, 173)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,12 +185,14 @@ public class TransaksiPage extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jLabel2)))
+                                .addComponent(datapel)))
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jLabel3))
+                                .addComponent(databuk)
+                                .addGap(194, 194, 194)
+                                .addComponent(keranjang))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
@@ -201,9 +203,9 @@ public class TransaksiPage extends javax.swing.JFrame {
                                 .addGap(129, 129, 129)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
+                                        .addComponent(kpesan)
                                         .addGap(181, 181, 181)
-                                        .addComponent(jLabel5)
+                                        .addComponent(ktrans)
                                         .addGap(96, 96, 96))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -213,9 +215,9 @@ public class TransaksiPage extends javax.swing.JFrame {
                                         .addGap(356, 356, 356))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(147, 147, 147)
-                                .addComponent(jLabel8)
+                                .addComponent(jum)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel9)
+                                .addComponent(har)
                                 .addGap(123, 123, 123)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -228,45 +230,43 @@ public class TransaksiPage extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ttharga, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tbay, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel13)
+                                    .addComponent(tothar)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(17, 17, 17)
-                                        .addComponent(jLabel15)))
+                                        .addComponent(bay)))
                                 .addGap(121, 121, 121)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
-                                        .addComponent(jLabel12))
-                                    .addComponent(jLabel14)
+                                        .addComponent(kem))
+                                    .addComponent(npem)
                                     .addComponent(tnpem, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tkem, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel1))
-                        .addGap(364, 364, 364))
+                        .addComponent(formtransaksi)
+                        .addGap(415, 415, 415))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btranssel)
-                        .addGap(190, 190, 190))))
+                        .addGap(231, 231, 231))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addGap(97, 97, 97)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10)))
+                            .addComponent(datapel)
+                            .addComponent(databuk)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(formtransaksi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(keranjang)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -276,8 +276,8 @@ public class TransaksiPage extends javax.swing.JFrame {
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(kpesan)
+                            .addComponent(ktrans))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tkpes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,16 +286,16 @@ public class TransaksiPage extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel6))
+                                    .addComponent(kbuk)
+                                    .addComponent(kpel))
                                 .addGap(20, 20, 20)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(tkpel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tkbuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel8))
+                                    .addComponent(har)
+                                    .addComponent(jum))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(tjum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,27 +304,27 @@ public class TransaksiPage extends javax.swing.JFrame {
                                 .addGap(74, 74, 74))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel14))
+                                    .addComponent(tothar)
+                                    .addComponent(npem))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(ttharga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tnpem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jLabel12))
+                                    .addComponent(bay)
+                                    .addComponent(kem))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(tkem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btranssel)
-                                .addGap(29, 29, 29))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(bbat, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bsel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(231, 231, 231))))
+                        .addGap(182, 182, 182)
+                        .addComponent(btranssel)
+                        .addGap(26, 26, 26))))
         );
 
         pack();
@@ -382,26 +382,25 @@ public class TransaksiPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bay;
     private javax.swing.JButton bbat;
     private javax.swing.JButton bsel;
     private javax.swing.JButton btranssel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel databuk;
+    private javax.swing.JLabel datapel;
+    private javax.swing.JLabel formtransaksi;
+    private javax.swing.JLabel har;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel jum;
+    private javax.swing.JLabel kbuk;
+    private javax.swing.JLabel kem;
+    private javax.swing.JLabel keranjang;
+    private javax.swing.JLabel kpel;
+    private javax.swing.JLabel kpesan;
+    private javax.swing.JLabel ktrans;
+    private javax.swing.JLabel npem;
     private javax.swing.JTable tabdatbuk;
     private javax.swing.JTable tabdatpel;
     private javax.swing.JTable tabker;
@@ -414,6 +413,7 @@ public class TransaksiPage extends javax.swing.JFrame {
     private javax.swing.JTextField tkpes;
     private javax.swing.JTextField tktrans;
     private javax.swing.JTextField tnpem;
+    private javax.swing.JLabel tothar;
     private javax.swing.JTextField ttharga;
     // End of variables declaration//GEN-END:variables
 }
