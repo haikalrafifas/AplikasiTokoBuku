@@ -52,6 +52,7 @@ public class PelangganPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         buttonBackHome = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -99,8 +100,10 @@ public class PelangganPage extends javax.swing.JFrame {
         TAalamat.setRows(5);
         jScrollPane2.setViewportView(TAalamat);
 
+        buttonGroup1.add(RL);
         RL.setText("Laki-Laki");
 
+        buttonGroup1.add(RP);
         RP.setText("Perempuan");
 
         BTambah.setText("Tambah");
@@ -302,7 +305,7 @@ public class PelangganPage extends javax.swing.JFrame {
         BTambah.setEnabled(false);
         BHapus.setEnabled(true);
         BUbah.setEnabled(true);
-        int i = TPelanggan.getSelectedRow();
+        int i = TPelanggan.getSelectedRow()+1;
         TableModel model = TPelanggan.getModel();
         TFKode.setText(model.getValueAt(i, 0).toString());
         TFNama.setText(model.getValueAt(i, 1).toString());
@@ -338,6 +341,7 @@ public class PelangganPage extends javax.swing.JFrame {
     private javax.swing.JTextField TFSearch;
     public javax.swing.JTable TPelanggan;
     private javax.swing.JButton buttonBackHome;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
