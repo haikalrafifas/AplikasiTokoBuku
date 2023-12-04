@@ -6,10 +6,11 @@ package views;
  */
 public class HomePage extends javax.swing.JFrame {
     
-    private controllers.HomeController homeController;
+    private final controllers.HomeController homeController;
 
     /**
      * Creates new form HomePage
+     * @param homeController
      */
     public HomePage(controllers.HomeController homeController) {
         this.homeController = homeController;
@@ -33,9 +34,9 @@ public class HomePage extends javax.swing.JFrame {
 
         buttonBuku = new javax.swing.JButton();
         buttonPelanggan = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        buttonTransaksi = new javax.swing.JButton();
         buttonLogout = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        buttonLaporan = new javax.swing.JButton();
         textWelcome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,10 +58,10 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Transaksi");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        buttonTransaksi.setText("Transaksi");
+        buttonTransaksi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                buttonTransaksiActionPerformed(evt);
             }
         });
 
@@ -71,10 +72,10 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Laporan Penjualan Buku");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        buttonLaporan.setText("Laporan Penjualan Buku");
+        buttonLaporan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                buttonLaporanActionPerformed(evt);
             }
         });
 
@@ -94,8 +95,8 @@ public class HomePage extends javax.swing.JFrame {
                     .addComponent(buttonBuku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(84, 84, 84))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(139, Short.MAX_VALUE)
@@ -115,11 +116,11 @@ public class HomePage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addComponent(buttonLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
@@ -130,36 +131,38 @@ public class HomePage extends javax.swing.JFrame {
 
     private void buttonBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBukuActionPerformed
         jmvc.Navigator.view("buku");
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_buttonBukuActionPerformed
 
     private void buttonPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPelangganActionPerformed
         jmvc.Navigator.view("pelanggan");
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_buttonPelangganActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void buttonTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTransaksiActionPerformed
+        jmvc.Navigator.view("transaksi");
+        this.dispose();
+    }//GEN-LAST:event_buttonTransaksiActionPerformed
 
     private void buttonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogoutActionPerformed
         database.Session.setUserId(0);
         
         jmvc.Navigator.view("login");
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_buttonLogoutActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void buttonLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLaporanActionPerformed
+        jmvc.Navigator.view("transaksi");
+        this.dispose();
+    }//GEN-LAST:event_buttonLaporanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBuku;
+    private javax.swing.JButton buttonLaporan;
     private javax.swing.JButton buttonLogout;
     private javax.swing.JButton buttonPelanggan;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton buttonTransaksi;
     private javax.swing.JLabel textWelcome;
     // End of variables declaration//GEN-END:variables
 }

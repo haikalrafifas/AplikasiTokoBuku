@@ -34,12 +34,12 @@
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="buttonPelanggan" pref="231" max="32767" attributes="0"/>
-                  <Component id="jButton1" max="32767" attributes="0"/>
+                  <Component id="buttonBuku" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton3" min="-2" pref="239" max="-2" attributes="0"/>
-                  <Component id="jButton5" min="-2" pref="239" max="-2" attributes="0"/>
+                  <Component id="buttonTransaksi" min="-2" pref="239" max="-2" attributes="0"/>
+                  <Component id="buttonLaporan" min="-2" pref="239" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
           </Group>
@@ -65,13 +65,13 @@
               <Component id="textWelcome" min="-2" pref="48" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton1" alignment="3" min="-2" pref="89" max="-2" attributes="0"/>
-                  <Component id="jButton3" alignment="3" min="-2" pref="89" max="-2" attributes="0"/>
+                  <Component id="buttonBuku" alignment="3" min="-2" pref="89" max="-2" attributes="0"/>
+                  <Component id="buttonTransaksi" alignment="3" min="-2" pref="89" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="124" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="buttonPelanggan" min="-2" pref="86" max="-2" attributes="0"/>
-                  <Component id="jButton5" min="-2" pref="79" max="-2" attributes="0"/>
+                  <Component id="buttonLaporan" min="-2" pref="79" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Component id="buttonLogout" min="-2" pref="85" max="-2" attributes="0"/>
@@ -81,12 +81,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="buttonBuku">
       <Properties>
         <Property name="text" type="java.lang.String" value="Buku"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonBukuActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonPelanggan">
@@ -97,12 +97,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonPelangganActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="buttonTransaksi">
       <Properties>
         <Property name="text" type="java.lang.String" value="Transaksi"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonTransaksiActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonLogout">
@@ -113,12 +113,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonLogoutActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton5">
+    <Component class="javax.swing.JButton" name="buttonLaporan">
       <Properties>
         <Property name="text" type="java.lang.String" value="Laporan Penjualan Buku"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonLaporanActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="textWelcome">

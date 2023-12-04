@@ -31,6 +31,16 @@ public class Buku {
         
     }
     
+    public ResultSet getAvailableBookData() {
+        
+        String query = "SELECT * FROM buku WHERE stok > 0";
+        
+        database.SQLConnection koneksi = new database.SQLConnection();
+        
+        return koneksi.doQuery(query);
+        
+    }
+    
     public boolean deleteBookData(String kd_buku){
         String query = "DELETE FROM buku WHERE kd_buku = ?";
         
