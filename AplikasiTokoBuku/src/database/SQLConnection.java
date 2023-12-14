@@ -6,7 +6,6 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-//import java.sql.QueryResult;
 
 public class SQLConnection {
     protected static Connection koneksi;
@@ -16,10 +15,8 @@ public class SQLConnection {
     public SQLConnection() {
         Config c = new Config();
         try {
-            koneksi = DriverManager.getConnection("jdbc:"+c.DB_DRIVER_NAME+"://"+c.DB_HOST+":"+c.DB_PORT+"/"+c.DB_NAME, c.DB_USER, "");
-        } catch ( SQLException e ) {
-            System.out.println(e);
-        }
+            koneksi = DriverManager.getConnection("jdbc:"+c.DB_DRIVER_NAME+"://"+c.DB_HOST+":"+c.DB_PORT+"/"+c.DB_NAME, c.DB_USER, c.DB_PASS);
+        } catch ( SQLException e ) {}
     }
     
     public static Connection getConnection() {
@@ -35,14 +32,15 @@ public class SQLConnection {
         try {
             Connection connection = getConnection();
             
-            stmt = connection.createStatement();
+            stmt = connection.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY
+            );
             
             result = stmt.executeQuery(query);
             
             return result;
-        } catch ( SQLException e ) {
-            System.out.println(e);
-        }
+        } catch ( SQLException e ) {}
         return null;
     }
     
@@ -59,9 +57,7 @@ public class SQLConnection {
             result = pstmt.executeQuery();
 
             return result;
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
+        } catch ( SQLException | NullPointerException e ) {}
         return null;
     }
     
@@ -78,9 +74,7 @@ public class SQLConnection {
             int rowsAffected = pstmt.executeUpdate();
 
             return rowsAffected > 0;
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
+        } catch (SQLException e) {}
         return false;
     }
     

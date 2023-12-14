@@ -7,7 +7,7 @@ import java.sql.ResultSet;
  * @author Kelompok urut 2
  */
 public class Pelanggan {
-    public ResultSet getPelangganData() {
+    public static ResultSet getPelangganData() {
         String query = "SELECT * FROM pelanggan";
         
         database.SQLConnection koneksi = new database.SQLConnection();
@@ -65,5 +65,21 @@ public class Pelanggan {
         ResultSet hasilPencarian = koneksi.doPreparedQuery(query, s,s,s,s, s);
         
         return hasilPencarian;
+    }
+    
+    public String getLatestId() {
+        String id = "PL000";
+        
+        String query = "SELECT kd_pelanggan FROM pelanggan ORDER BY kd_pelanggan DESC";
+        database.SQLConnection koneksi = new database.SQLConnection();
+        java.sql.ResultSet result = koneksi.doQuery(query);
+        
+        try {
+            if (result.next()) {
+                id = result.getString("kd_pelanggan");
+            }
+        } catch (Exception e) {}
+        
+        return id;
     }
 }

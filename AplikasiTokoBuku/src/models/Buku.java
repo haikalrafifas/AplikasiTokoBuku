@@ -21,7 +21,7 @@ public class Buku {
         
     }
     
-    public ResultSet getBookData() {
+    public static ResultSet getBookData() {
         
         String query = "SELECT * FROM buku";
         
@@ -65,5 +65,21 @@ public class Buku {
         ResultSet hasilPencarian = koneksi.doPreparedQuery(query, s,s,s,s,s,s);
         
         return hasilPencarian;
+    }
+    
+    public String getLatestId() {
+        String id = "K0000";
+        
+        String query = "SELECT kd_buku FROM buku ORDER BY kd_buku DESC";
+        database.SQLConnection koneksi = new database.SQLConnection();
+        java.sql.ResultSet result = koneksi.doQuery(query);
+        
+        try {
+            if (result.next()) {
+                id = result.getString("kd_buku");
+            }
+        } catch (Exception e) {}
+        
+        return id;
     }
 }

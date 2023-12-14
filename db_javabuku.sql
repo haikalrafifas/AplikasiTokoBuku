@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2023 at 09:29 PM
+-- Generation Time: Dec 13, 2023 at 11:08 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -22,6 +22,9 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+
+CREATE DATABASE `db_javabuku`;
+USE `db_javabuku`;
 
 --
 -- Table structure for table `buku`
@@ -44,10 +47,10 @@ CREATE TABLE `buku` (
 --
 
 INSERT INTO `buku` (`kd_buku`, `judul`, `jenis`, `penulis`, `penerbit`, `tahun`, `stok`, `harga_pokok`, `harga_jual`) VALUES
-('K0001', 'Dragon Ball', 'Komik', 'Akira Toriyama', 'Gramedia', '2006', 4, 40000, 60000),
-('K0002', 'Naruto Shippuden', 'Komik', 'Masashi Kishimoto', 'Gunung Agung', '2000', 13, 50000, 70000),
-('K0003', 'One Piece', 'Komik', 'Echiro Oda', 'Gramedia', '2001', 20, 45000, 60000),
-('K0004', 'Spy X Family', 'Komik', 'Endo Tatsuya', 'T. Harapan', '2018', 16, 45000, 55000),
+('K0001', 'Dragon Ball', 'Komik', 'Akira Toriyama', 'Gramedia', '2006', 14, 40000, 60000),
+('K0002', 'Naruto Shippuden', 'Komik', 'Masashi Kishimoto', 'Gunung Agung', '2000', 30, 50000, 70000),
+('K0003', 'One Piece', 'Komik', 'Echiro Oda', 'Gramedia', '2001', 35, 45000, 60000),
+('K0004', 'Spy X Family', 'Komik', 'Endo Tatsuya', 'T. Harapan', '2018', 26, 45000, 55000),
 ('K0005', 'Jojo’s Bizarre Adventure', 'Komik', 'Hirohiko Araki', 'Flyer', '1999', 23, 70000, 90000);
 
 -- --------------------------------------------------------
@@ -85,6 +88,14 @@ CREATE TABLE `laporan` (
   `jumlah` int(4) NOT NULL,
   `total` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `laporan`
+--
+
+INSERT INTO `laporan` (`kd_transaksi`, `kd_pelanggan`, `kd_buku`, `jumlah`, `total`) VALUES
+('TR0001', 'PL001', 'K0004', 2, 110000),
+('TR0002', 'PL002', 'K0005', 1, 90000);
 
 --
 -- Triggers `laporan`
@@ -141,7 +152,7 @@ INSERT INTO `pelanggan` (`kd_pelanggan`, `nama_pelanggan`, `jenis_kelamin`, `ala
 ('PL001', 'Samuel Sihombing', 'L', 'Jalan Dukuh Depok'),
 ('PL002', 'Naufal Muhammad', 'L', 'Jalan Mangga Tangerang'),
 ('PL003', 'Kevin Rasendriya', 'L', 'Jalan jalan Bekasi'),
-('PL004', 'Damar Nurfadhil', 'L', 'Jalan Sapi Jakarta utara');
+('PL004', 'Haikal Rafif', 'L', 'Jalan Sapi Jakarta utara');
 
 -- --------------------------------------------------------
 
@@ -157,6 +168,16 @@ CREATE TABLE `penjualan` (
   `jumlah` int(4) NOT NULL,
   `sub_total` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `penjualan`
+--
+
+INSERT INTO `penjualan` (`kd_pretransaksi`, `kd_transaksi`, `kd_pelanggan`, `kd_buku`, `jumlah`, `sub_total`) VALUES
+('PS0001', 'TR0001', 'PL001', 'K0004', 2, 110000),
+('PS0002', 'TR0001', 'PL001', 'K0004', 4, 220000),
+('PS0003', 'TR0001', 'PL001', 'K0003', 2, 120000),
+('PS0004', 'TR0002', 'PL002', 'K0005', 1, 90000);
 
 --
 -- Triggers `penjualan`

@@ -1,63 +1,16 @@
 package views;
 
-import javax.swing.table.DefaultTableModel;
-
-
-//jmvc.Navigator.view("home");
-//       this.setVisible(false);
-
 /**
  *
  * @author Samuel
  */
 public class BukuPage extends javax.swing.JFrame {
-
-   private controllers.BukuController bukuController;
-   private java.sql.ResultSet dataBuku;
+    private final controllers.BukuController controller = controllers.BukuController.controller;
     
-    private String kd_buku_hapus;
-    /**
-     * Creates new form buku
-     */
-    public BukuPage(controllers.BukuController bukuController) {
-        this.bukuController = bukuController;
-        dataBuku = bukuController.getBookData();
-        
+    public BukuPage() {
         initComponents();
-        
-        CBJenis.addItem("PILIH");
-        CBJenis.addItem("Novel");
-        CBJenis.addItem("Komik");
-        CBJenis.addItem("Biografi");
-        CBJenis.addItem("Buku Sekolah");
-        
-        this.setLocationRelativeTo(null);
-       
-        BHapus.setEnabled(false);
-        BUbah.setEnabled(false);
-        aktif();
-        reset();
     }
     
-    void aktif(){
-        CBJenis.setEnabled(true);
-        
-    }
-    
-    void reset(){
-        BHapus.setEnabled(false);
-        BUbah.setEnabled(false);
-        CBJenis.setSelectedItem("PILIH");
-        TFkode.setText("");
-        TFTahun.setText("");
-        TFStok.setText("");
-        TFPenulis.setText("");
-        TFPenerbit.setText("");
-        TFJudul.setText("");
-        TFHargaPokok.setText("");
-        TFHargaJual.setText("");
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,64 +39,153 @@ public class BukuPage extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TData = new javax.swing.JTable();
         BTambah = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         TFStok = new javax.swing.JTextField();
         BHapus = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         TFSearch = new javax.swing.JTextField();
         BBack = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TBuku = new javax.swing.JTable();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 51, 102));
         jLabel9.setText("Harga Jual");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(653, 390, -1, -1));
 
-        TFHargaPokok.setText("jTextField5");
+        TFHargaPokok.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(TFHargaPokok, new org.netbeans.lib.awtextra.AbsoluteConstraints(743, 353, 108, -1));
 
         BUbah.setText("Ubah");
+        BUbah.setAutoscrolls(true);
+        BUbah.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         BUbah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BUbahActionPerformed(evt);
             }
         });
+        getContentPane().add(BUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 480, 73, 30));
 
-        TFHargaJual.setText("jTextField6");
+        TFHargaJual.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(TFHargaJual, new org.netbeans.lib.awtextra.AbsoluteConstraints(743, 389, 108, -1));
 
         BReset.setText("Reset");
+        BReset.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         BReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BResetActionPerformed(evt);
             }
         });
+        getContentPane().add(BReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, 80, 30));
 
-        TFPenerbit.setText("jTextField7");
+        TFPenerbit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(TFPenerbit, new org.netbeans.lib.awtextra.AbsoluteConstraints(745, 245, 106, -1));
 
-        TFPenulis.setText("jTextField8");
+        TFPenulis.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(TFPenulis, new org.netbeans.lib.awtextra.AbsoluteConstraints(744, 209, 107, -1));
 
-        TFkode.setText("jTextField1");
+        CBJenis.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(CBJenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(744, 169, 107, -1));
 
-        TFJudul.setText("jTextField2");
+        TFkode.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(TFkode, new org.netbeans.lib.awtextra.AbsoluteConstraints(744, 97, 107, -1));
 
-        TFTahun.setText("jTextField3");
+        TFJudul.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(TFJudul, new org.netbeans.lib.awtextra.AbsoluteConstraints(744, 133, 107, -1));
 
+        TFTahun.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(TFTahun, new org.netbeans.lib.awtextra.AbsoluteConstraints(744, 281, 107, -1));
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 102));
         jLabel1.setText("Kode Buku");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(653, 98, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 102));
         jLabel2.setText("Judul");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(653, 134, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 51, 102));
         jLabel3.setText("Jenis");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(653, 172, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 102));
         jLabel4.setText("Penulis");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(653, 209, -1, -1));
 
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 51, 102));
         jLabel5.setText("Penerbit");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(653, 247, -1, -1));
 
+        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 51, 102));
         jLabel6.setText("Tahun");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(653, 282, -1, -1));
 
+        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 51, 102));
         jLabel7.setText("Stok");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(653, 318, -1, -1));
 
-        TData.setModel(new javax.swing.table.DefaultTableModel(
+        BTambah.setText("Tambah");
+        BTambah.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        BTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTambahActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 440, 73, 30));
+
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel8.setText("Harga Pokok");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(653, 354, -1, -1));
+
+        TFStok.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(TFStok, new org.netbeans.lib.awtextra.AbsoluteConstraints(743, 317, 108, -1));
+
+        BHapus.setText("Hapus");
+        BHapus.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        BHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BHapusActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(759, 433, 80, 30));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+
+        TFSearch.setBackground(new java.awt.Color(252, 252, 252));
+        TFSearch.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        TFSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TFSearchKeyPressed(evt);
+            }
+        });
+
+        BBack.setBackground(new java.awt.Color(153, 51, 255));
+        BBack.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        BBack.setForeground(new java.awt.Color(255, 255, 255));
+        BBack.setText("Kembali");
+        BBack.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        BBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BBackActionPerformed(evt);
+            }
+        });
+
+        TBuku.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -154,272 +196,91 @@ public class BukuPage extends javax.swing.JFrame {
                 "Kode Buku", "Judul", "Jenis", "Penulis", "Penerbit", "Tahun", "Stok", "Harga Pokok", "Harga Jual"
             }
         ));
-        String[] columns = {"Kode Buku", "Judul", "Jenis", "Penulis", "Penerbit", "Tahun", "Stok", "Harga Pokok", "Harga Jual"};
-
-        javax.swing.table.DefaultTableModel tableModel = new javax.swing.table.DefaultTableModel(columns, 0);
-
-        try {
-            while ( dataBuku.next() ) {
-                String[] data = {
-                    dataBuku.getString("kd_buku"),
-                    dataBuku.getString("judul"),
-                    dataBuku.getString("jenis"),
-                    dataBuku.getString("penulis"),
-                    dataBuku.getString("penerbit"),
-                    dataBuku.getString("tahun"),
-                    Integer.toString(dataBuku.getInt("stok")),
-                    Integer.toString(dataBuku.getInt("harga_pokok")),
-                    Integer.toString(dataBuku.getInt("harga_jual"))
-                };
-
-                tableModel.addRow(data);
-            }
-        } catch ( java.sql.SQLException e ) {
-            System.out.println(e);
-        }
-
-        TData.setModel(tableModel);
-        TData.addMouseListener(new java.awt.event.MouseAdapter() {
+        TBuku.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TDataMouseClicked(evt);
+                TBukuMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(TData);
+        jScrollPane1.setViewportView(TBuku);
 
-        BTambah.setText("Tambah");
-        BTambah.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTambahActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setText("Harga Pokok");
-
-        TFStok.setText("jTextField4");
-
-        BHapus.setText("Hapus");
-        BHapus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BHapusActionPerformed(evt);
-            }
-        });
-
-        TFSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TFSearchKeyPressed(evt);
-            }
-        });
-
-        BBack.setText("Kembali");
-        BBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BBackActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
-                                .addComponent(BReset))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(BTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                                .addComponent(BHapus)))
-                        .addGap(12, 12, 12))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(BUbah)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addGap(48, 48, 48)
-                            .addComponent(TFPenerbit))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addGap(34, 34, 34)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(TFkode)
-                                .addComponent(TFJudul)
-                                .addComponent(CBJenis, 0, 107, Short.MAX_VALUE)
-                                .addComponent(TFPenulis)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addGap(59, 59, 59)
-                            .addComponent(TFTahun))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel9))
-                            .addGap(22, 22, 22)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(TFHargaJual)
-                                .addComponent(TFHargaPokok)
-                                .addComponent(TFStok)))))
-                .addContainerGap(30, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(BBack)
-                .addGap(87, 87, 87)
-                .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(BBack, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(261, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TFSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BBack, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(TFkode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(TFJudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(CBJenis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(TFPenulis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(TFPenerbit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(TFTahun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(TFStok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(TFHargaPokok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(TFHargaJual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BTambah)
-                    .addComponent(BHapus))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BUbah)
-                    .addComponent(BReset))
-                .addGap(17, 17, 17))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TFSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BBack, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void BTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTambahActionPerformed
-        bukuController.handleAddData();
-        jmvc.Navigator.view("buku");
-        this.dispose();
+        controller.handleAddData();
     }//GEN-LAST:event_BTambahActionPerformed
 
     private void BResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BResetActionPerformed
-        // TODO add your handling code here:
-        BTambah.setEnabled(true);
-        reset();
-        aktif();
-        CBJenis.requestFocus();
+        controller.resetInput();
     }//GEN-LAST:event_BResetActionPerformed
 
     private void BBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBackActionPerformed
-        jmvc.Navigator.view("home");
-        this.dispose();
+        controller.goToPreviousPage();
     }//GEN-LAST:event_BBackActionPerformed
 
-    private void TDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TDataMouseClicked
-        // TODO add your handling code here:
-        BTambah.setEnabled(false);
-        BHapus.setEnabled(true);
-        BUbah.setEnabled(true);
-        DefaultTableModel model = (DefaultTableModel) TData.getModel();
-        int selectedRow = TData.getSelectedRow();
-        kd_buku_hapus = model.getValueAt(selectedRow, 0).toString();
-        try{
-            TFkode.setText(model.getValueAt(selectedRow, 0).toString());
-            TFTahun.setText(model.getValueAt(selectedRow, 5).toString());
-            TFStok.setText(model.getValueAt(selectedRow, 6).toString());
-            String comboSub =model.getValueAt(selectedRow, 2).toString();
-            for (int i = 0; i < CBJenis.getItemCount();i++){
-                if(CBJenis.getItemAt(i).toString().equalsIgnoreCase(comboSub)) {
-                   CBJenis.setSelectedIndex(i);
-                }
-            }
-            TFPenulis.setText(model.getValueAt(selectedRow, 3).toString());
-            TFPenerbit.setText(model.getValueAt(selectedRow, 4).toString());
-            TFJudul.setText(model.getValueAt(selectedRow, 1).toString());
-            TFHargaPokok.setText(model.getValueAt(selectedRow, 7).toString());
-            TFHargaJual.setText(model.getValueAt(selectedRow, 8).toString());
-        }catch(Exception e){
-            
-        }
-    }//GEN-LAST:event_TDataMouseClicked
+    private void TBukuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBukuMouseClicked
+        controller.handleSelectedRow();
+    }//GEN-LAST:event_TBukuMouseClicked
 
     private void BHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BHapusActionPerformed
-        // TODO add your handling code here:
-        bukuController.handleDeleteData(kd_buku_hapus);
-        
+        controller.handleDeleteData(TFkode.getText());
     }//GEN-LAST:event_BHapusActionPerformed
 
     private void BUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUbahActionPerformed
-        // TODO add your handling code here:
-        if ( bukuController.handleUpdateData(kd_buku_hapus) ) {
-            jmvc.Navigator.view("buku");
-        }
+        controller.handleUpdateData(TFkode.getText());
     }//GEN-LAST:event_BUbahActionPerformed
 
     private void TFSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TFSearchKeyPressed
-        // TODO add your handling code here:
         if (evt.getKeyCode() == evt.VK_ENTER){
-            String s = TFSearch.getText();
-            
-            bukuController.handleSearchData(s);
+            controller.handleSearchData();
         }
     }//GEN-LAST:event_TFSearchKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BBack;
-    private javax.swing.JButton BHapus;
+    public javax.swing.JButton BHapus;
     private javax.swing.JButton BReset;
-    private javax.swing.JButton BTambah;
-    private javax.swing.JButton BUbah;
+    public javax.swing.JButton BTambah;
+    public javax.swing.JButton BUbah;
     public javax.swing.JComboBox<String> CBJenis;
-    public javax.swing.JTable TData;
+    public javax.swing.JTable TBuku;
     public javax.swing.JTextField TFHargaJual;
     public javax.swing.JTextField TFHargaPokok;
     public javax.swing.JTextField TFJudul;
     public javax.swing.JTextField TFPenerbit;
     public javax.swing.JTextField TFPenulis;
-    private javax.swing.JTextField TFSearch;
+    public javax.swing.JTextField TFSearch;
     public javax.swing.JTextField TFStok;
     public javax.swing.JTextField TFTahun;
     public javax.swing.JTextField TFkode;
@@ -433,6 +294,7 @@ public class BukuPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
